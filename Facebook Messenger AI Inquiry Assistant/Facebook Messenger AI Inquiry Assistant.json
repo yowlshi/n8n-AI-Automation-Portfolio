@@ -1,0 +1,319 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=KNOWLEDGE BASE:\n\n{{ $json.content }}\n\nCUSTOMER MESSAGE:\n\n{{ $('Webhook (Facebook)').item.json.body.entry[0].messaging[0].message.text }}\n\nAnswer the customer's question using the knowledge base.\n\nBefore generating the final response:\n\n- Convert all \\n and \\n\\n into normal paragraph breaks.\n- Remove all ** symbols.\n- Remove markdown formatting.\n- Return plain Facebook Messenger text only.\n- Never display \\n and \\n\\n, \\t, **, ##, or markdown syntax.\n- Format lists naturally using numbers.\n\nAnswer directly and naturally.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are the official Facebook Customer Support Assistant of Angelo Automates.\n\nYour role is to answer customer inquiries using ONLY the information provided in the knowledge base.\n\nIMPORTANT RULES\n\n1. ALWAYS answer the customer's latest question first.\n\n2. NEVER reply with generic customer service messages such as:\n   - \"How can I help you?\"\n   - \"I'm here to assist you.\"\n   - \"Let me know how I can help.\"\n   UNLESS the customer has only greeted you and has not asked a question.\n\n3. If the customer asks a specific question, answer it immediately using the knowledge base.\n\n4. If the answer exists in the knowledge base, provide the answer directly.\n\n5. If the answer cannot be found in the knowledge base, say:\n\n   \"I couldn't find that information at the moment. Please contact Angelo Automates directly for further assistance.\"\n\n6. Never invent:\n   - Prices\n   - Services\n   - Policies\n   - Timelines\n   - Contact information\n   - Guarantees\n   - Promotions\n\nLANGUAGE RULES\n\n- If the customer uses English, respond in English.\n- If the customer uses Tagalog, respond in Tagalog.\n- If the customer uses a mix of English and Tagalog, respond naturally in the same style.\n\nRESPONSE FORMAT\n\n- Return plain text only.\n- No markdown.\n- No asterisks (**).\n- No hashtags (#).\n- No code blocks.\n- No escaped characters (\\n) or (\\n\\n).\n- No raw document formatting.\n\nCONVERSATION STYLE\n\n- Friendly\n- Professional\n- Natural\n- Concise\n\nWhen listing multiple items, use this format:\n\n1. Item One\n2. Item Two\n3. Item Three\n\nEXAMPLES\n\nCustomer:\nAno mga courses ang available?\n\nAssistant:\nAvailable ang mga sumusunod na courses sa Angelo Automates:\n\n1. AI Automation Foundations\n   Para sa beginners, students, at career shifters.\n\n2. n8n Automation Specialist\n   Para sa freelancers, virtual assistants, at automation builders.\n\n3. Business Automation Masterclass\n   Para sa business owners, agencies, at consultants.\n\nMay gusto ka bang malaman nang mas detalyado tungkol sa isa sa mga courses na ito?\n\nCustomer:\nMagkano ang coaching?\n\nAssistant:\nAng available coaching packages ay:\n\n1. Single Session\n   PHP 1,500\n   Duration: 1 hour\n\n2. Starter Coaching Package\n   PHP 5,000\n   Includes 4 coaching sessions\n\n3. Advanced Coaching Package\n   PHP 10,000\n   Includes 8 coaching sessions\n\nMay gusto ka bang malaman tungkol sa coaching program?"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        6928,
+        1488
+      ],
+      "id": "eadb5554-c1dd-41d0-ace0-7dc4bd50fac5",
+      "name": "Facebook Chat AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "id": "9aa75083-2955-4e6c-867d-e1b17684af8d",
+      "name": "GPT-4o mini (Facebook Chat)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        6832,
+        1696
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "1"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        6976,
+        1696
+      ],
+      "id": "0d788752-450a-41a0-bd4d-949fcb1b89e2",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4b0b436c-3ac1-4d09-b9ce-26b6faebadc7",
+              "leftValue": "={{ $json.query['hub.mode'] }}",
+              "rightValue": "subscribe",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "4308765c-e3da-4bbd-bfad-38609a600be0",
+              "leftValue": "={{ $json.query.hub_verify_token }}",
+              "rightValue": "n8n-page-chatbot",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        6400,
+        1328
+      ],
+      "id": "8376b72e-89ed-47ff-82c5-5453d0752bc3",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1NoGgVwfhp4sdjxRckzioQVEXEXXaN9LIDgQ9ltnw7j0/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        6656,
+        1488
+      ],
+      "id": "183c1776-da80-430b-8c20-617e7cc39247",
+      "name": "ANGELO AUTOMATES Course & Service Agent",
+      "credentials": {
+        "googleApi": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "f1595664-a9c7-483f-8f9b-cd2153f11704",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        6128,
+        1392
+      ],
+      "id": "e71bf19d-be90-450f-aa55-6c34425fed30",
+      "name": "Webhook (Facebook)",
+      "webhookId": "f1595664-a9c7-483f-8f9b-cd2153f11704"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        6656,
+        1312
+      ],
+      "id": "a62d9f2f-ff43-4f6c-adb2-d9e1100c3307",
+      "name": "Respond to Webhook (Facebook)"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "f0691f57-143a-4993-b14f-b102e96d7aeb",
+              "leftValue": "={{ $json.body.entry[0].messaging[0].message.text }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        6400,
+        1488
+      ],
+      "id": "c94f82c0-f621-4b57-b094-29f99c3d7f89",
+      "name": "Filter (if text contains a message)"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v25.0/{{ $('Webhook (Facebook)').item.json.body.entry[0].id }}/messages",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "access_token",
+              "value": "EAAVPOjA1ggcBRZCPU0WiGYkkjVWnZAbp0v51PuqjKpOqYxAUmXyEq868ujTm5zCpzizhWi7U2lcTbJ0v5cUfUnBl0e4SQJBWkj9AsGLZBqTs8S2L1bQ4uZBbxAOMJ4t2jlQVcuTmxB2z5JBjuRLprtsxydBLIhc7JiZCrkPJeyoysUAQZBpO3iZCzVUeqlHkpPwoobYCEYyw3AtuCluxPkeDwZDZD"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"recipient\": {\n    \"id\": \"{{ $('Webhook (Facebook)').item.json.body.entry[0].messaging[0].sender.id }}\"\n  },\n  \"messaging_type\": \"RESPONSE\",\n  \"message\": {\n    \"text\": \"{{ JSON.stringify($json.output).slice(1,-1) }}\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        7328,
+        1488
+      ],
+      "id": "bad3c01b-7526-496a-8d3c-a113c60589ba",
+      "name": "HTTP Request (To reply)"
+    },
+    {
+      "parameters": {
+        "content": "## Facebook Messenger AI Inquiry Assistant",
+        "height": 640,
+        "width": 1552,
+        "color": "#326742"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        6016,
+        1232
+      ],
+      "typeVersion": 1,
+      "id": "40c2aaaa-59d6-4ab6-9293-3df9f85ff74f",
+      "name": "Sticky Note6"
+    }
+  ],
+  "connections": {
+    "Facebook Chat AI Agent": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request (To reply)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4o mini (Facebook Chat)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Facebook Chat AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Facebook Chat AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook (Facebook)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ANGELO AUTOMATES Course & Service Agent": {
+      "main": [
+        [
+          {
+            "node": "Facebook Chat AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook (Facebook)": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Filter (if text contains a message)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter (if text contains a message)": {
+      "main": [
+        [
+          {
+            "node": "ANGELO AUTOMATES Course & Service Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
