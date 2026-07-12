@@ -1,0 +1,160 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        3984,
+        688
+      ],
+      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1sWCU8Qy2MIihCmJhf8MnOA-PaSMRToIDcKxKLXWc-M8/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        4224,
+        880
+      ],
+      "id": "3f49071f-5fba-4689-aa21-68a45deb6e75",
+      "name": "The Complete Beginner's Guide to AI Automation for Small Businesses",
+      "credentials": {
+        "googleApi": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1zVky29yOeIKvTN83rewMxx9uhbiEGQItQsWoQWMVZ2w/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocsTool",
+      "typeVersion": 2,
+      "position": [
+        4400,
+        880
+      ],
+      "id": "f5c28aa8-0b65-4edf-ab8f-93c648ea8a84",
+      "name": "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap",
+      "credentials": {
+        "googleApi": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Full Context - As a Tool\n\n",
+        "height": 480,
+        "width": 592,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        3952,
+        608
+      ],
+      "typeVersion": 1,
+      "id": "c0c3ac99-8b8f-44d2-a6b5-49d18c0a92c5",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "aed62a79-bf1e-4b24-8018-809830b0e184",
+      "name": "Full Context Agent (Tool)",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        4160,
+        688
+      ]
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "id": "b8fd6dad-7047-47c4-a268-48bf401ab391",
+      "name": "GPT-4o mini (Full Context - Tool)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        4064,
+        880
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Full Context Agent (Tool)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "The Complete Beginner's Guide to AI Automation for Small Businesses": {
+      "ai_tool": [
+        [
+          {
+            "node": "Full Context Agent (Tool)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap": {
+      "ai_tool": [
+        [
+          {
+            "node": "Full Context Agent (Tool)",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4o mini (Full Context - Tool)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Full Context Agent (Tool)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
