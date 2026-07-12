@@ -1,0 +1,644 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -64,
+        96
+      ],
+      "id": "9d011f77-5c22-42f0-8d16-907165179f70",
+      "name": "Receive Invoice Image",
+      "webhookId": "685611ad-1a51-4efb-a4ae-f7795faaa889",
+      "credentials": {
+        "telegramApi": {
+          "id": "8muRdoVdlzax9SoG",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.document.file_id }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        144,
+        96
+      ],
+      "id": "156f079c-27c9-4b6d-977b-b20e5ee3b153",
+      "name": "Download the Invoice",
+      "webhookId": "252ac54d-9548-4c2a-8eb0-8918b8fcb606",
+      "credentials": {
+        "telegramApi": {
+          "id": "8muRdoVdlzax9SoG",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.ocr.space/parse/image",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "apikey",
+              "value": "K86110720388957"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "file",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "12771f4c-a057-45d2-9c77-29ab92b4bc74",
+      "name": "Analyze Image"
+    },
+    {
+      "parameters": {
+        "name": "=Invoice [{{ $now.format('MMMM-dd-yyyy') }}]",
+        "driveId": {
+          "__rl": true,
+          "value": "My Drive",
+          "mode": "list",
+          "cachedResultName": "My Drive",
+          "cachedResultUrl": "https://drive.google.com/drive/my-drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1oKcXBN_b3FTtd5yFj7KfqKfLKsdU0iQX",
+          "mode": "list",
+          "cachedResultName": "Invoice Images",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1oKcXBN_b3FTtd5yFj7KfqKfLKsdU0iQX"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        432,
+        320
+      ],
+      "id": "aaa51a80-804c-4cae-b4d4-555244ede303",
+      "name": "Upload Invoice file image",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Y7yuEVstZgnCxhvO",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1296,
+        128
+      ],
+      "id": "187aec0d-b412-4322-b62a-e93e628d3476",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "={\n  \"invoice_number\": \"string\",\n  \"invoice_date\": \"string\",\n  \"due_date\": \"string\",\n  \"payment_terms\": \"string\",\n  \"vendor_name\": \"string\",\n  \"vendor_email\": \"string\",\n  \"vendor_phone\": \"string\",\n  \"customer_name\": \"string\",\n  \"customer_email\": \"string\",\n  \"customer_phone\": \"string\",\n  \"subtotal\": \"string\",\n  \"vat\": \"string\",\n  \"total\": \"string\",\n  \"currency\": \"string\",\n  \"bank_name\": \"string\",\n  \"account_name\": \"string\",\n  \"account_number\": \"string\",\n  \"swift_code\": \"string\",\n  \"authorized_signatory\": \"string\",\n  \"invoice_category\": \"string\",\n  \"payment_status\": \"string\"\n}",
+        "autoFix": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        832,
+        48
+      ],
+      "id": "f9980d20-c9d4-4ca7-801d-eab9f3e2c722",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        912,
+        320
+      ],
+      "id": "5dda32a1-ea47-42a8-a5f8-706a50e0b206",
+      "name": "OpenAI GPT-4o mini (parser)",
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0",
+          "mode": "list",
+          "cachedResultName": "AI Invoice Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Upload Date": "={{ $now.format('MMMM-dd-yyyy') }}",
+            "Invoice Number": "={{ $json.output.invoice_number }}",
+            "Invoice Date": "={{ $json.output.invoice_date }}",
+            "Due Date": "={{ $json.output.due_date }}",
+            "Vendor Name": "={{ $json.output.vendor_name }}",
+            "Customer Name": "={{ $json.output.customer_name }}",
+            "Subtotal": "={{ $json.output.subtotal }}",
+            "VAT": "={{ $json.output.vat }}",
+            "Total Amount": "={{ $json.output.total }}",
+            "Currency": "={{ $json.output.currency }}",
+            "Payment Status": "={{ $json.output.payment_status }}",
+            "Google Drive Link": "={{ $json.webViewLink }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Upload Date",
+              "displayName": "Upload Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Number",
+              "displayName": "Invoice Number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Invoice Date",
+              "displayName": "Invoice Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Due Date",
+              "displayName": "Due Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Vendor Name",
+              "displayName": "Vendor Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Customer Name",
+              "displayName": "Customer Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Subtotal",
+              "displayName": "Subtotal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "VAT",
+              "displayName": "VAT",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total Amount",
+              "displayName": "Total Amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Currency",
+              "displayName": "Currency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Payment Status",
+              "displayName": "Payment Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Google Drive Link",
+              "displayName": "Google Drive Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        1504,
+        128
+      ],
+      "id": "772e58e3-e213-46c3-b69f-f010d7f4fd9a",
+      "name": "Update AI Invoice Database",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extract the invoice details from the OCR text below.\n\nOCR TEXT:\n{{ $json.ParsedResults[0].ParsedText }}\n\nRequirements:\n- Return ONLY JSON.\n- Convert monetary values to plain numbers.\n- Use YYYY-MM-DD date format.\n- Identify the invoice issuer as vendor_name.\n- Identify the billed company as customer_name.\n\nExtract the information now.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are an invoice extraction assistant.\n\nExtract invoice information from OCR text.\n\nReturn ONLY valid JSON.\n\nIf information is unavailable, return an empty string.\n\nOutput Schema:\n\n{\n  \"invoice_number\": \"\",\n  \"invoice_date\": \"\",\n  \"due_date\": \"\",\n  \"payment_terms\": \"\",\n  \"vendor_name\": \"\",\n  \"vendor_email\": \"\",\n  \"vendor_phone\": \"\",\n  \"customer_name\": \"\",\n  \"customer_email\": \"\",\n  \"customer_phone\": \"\",\n  \"subtotal\": \"\",\n  \"vat\": \"\",\n  \"total\": \"\",\n  \"currency\": \"\",\n  \"bank_name\": \"\",\n  \"account_name\": \"\",\n  \"account_number\": \"\",\n  \"swift_code\": \"\",\n  \"authorized_signatory\": \"\",\n  \"invoice_category\": \"\",\n  \"payment_status\": \"Pending\"\n}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        640,
+        -96
+      ],
+      "id": "252c6132-856a-4e43-a029-442d672a4b7e",
+      "name": "Invoice Extraction AI"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        560,
+        144
+      ],
+      "id": "9925b849-6309-4834-9f57-02ab0e5e66a1",
+      "name": "OpenAI GPT-4o mini (Extract Agent)",
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Generate a Telegram notification using the following invoice data.\n\nInvoice Number: {{ $json['Invoice Number'] }}\nVendor: {{ $json['Vendor Name'] }}\nCustomer: {{ $json['Customer Name'] }}\nInvoice Date: {{ $json['Invoice Date'] }}\nDue Date: {{ $json['Due Date'] }}\nTotal: {{ $json['Total Amount'] }}\nCurrency: {{ $json.Currency }}\nStatus: {{ $json['Payment Status'] }}\n\nGoogle Drive Link:\n{{ $json['Google Drive Link'] }}",
+        "options": {
+          "systemMessage": "=You are an Invoice Notification Assistant.\n\nGenerate a Telegram notification using the following invoice data.\n\nRules:\n- Keep the message concise and professional.\n- Do not mention AI.\n- Do not mention automation.\n- Do not mention n8n.\n- Do not add signatures, footers, or disclaimers.\n- Return only the notification message.\n\nInvoice Number: {{ $json['Invoice Number'] }}\nVendor: {{ $json['Vendor Name'] }}\nCustomer: {{ $json['Customer Name'] }}\nInvoice Date: {{ $json['Invoice Date'] }}\nDue Date: {{ $json['Due Date'] }}\nTotal: {{ $json['Total Amount'] }}\nCurrency: {{ $json.Currency }}\nStatus: {{ $json['Payment Status'] }}\n\nGoogle Drive Link:\n{{ $json['Google Drive Link'] }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1712,
+        128
+      ],
+      "id": "9ae76c0e-e972-43fc-bd2a-fe6dfb7f0077",
+      "name": "Invoice Summary AI"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1712,
+        352
+      ],
+      "id": "0c88fcc0-20f9-494f-994e-65938096ce8e",
+      "name": "OpenAI GPT-4o mini (Summary Agent)",
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Receive Invoice Image').item.json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        704,
+        112
+      ],
+      "id": "d927af40-3a62-4894-bed9-4fd0036d1664",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Receive Invoice Image').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2080,
+        128
+      ],
+      "id": "950adac6-b50c-447d-800f-ad6229cd9ed9",
+      "name": "Send Reply with Invoice Details",
+      "webhookId": "491afd11-86e4-4f62-a8da-7e7d13ffdf74",
+      "credentials": {
+        "telegramApi": {
+          "id": "8muRdoVdlzax9SoG",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Receive Invoice Image": {
+      "main": [
+        [
+          {
+            "node": "Download the Invoice",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download the Invoice": {
+      "main": [
+        [
+          {
+            "node": "Analyze Image",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Upload Invoice file image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze Image": {
+      "main": [
+        [
+          {
+            "node": "Invoice Extraction AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload Invoice file image": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Update AI Invoice Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Invoice Extraction AI",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI GPT-4o mini (parser)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update AI Invoice Database": {
+      "main": [
+        [
+          {
+            "node": "Invoice Summary AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invoice Extraction AI": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI GPT-4o mini (Extract Agent)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Invoice Extraction AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Invoice Summary AI": {
+      "main": [
+        [
+          {
+            "node": "Send Reply with Invoice Details",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI GPT-4o mini (Summary Agent)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Invoice Summary AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Invoice Extraction AI",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {
+    "Receive Invoice Image": [
+      {
+        "update_id": 299081704,
+        "message": {
+          "message_id": 4,
+          "from": {
+            "id": 1924206240,
+            "is_bot": false,
+            "first_name": "Yowlshi",
+            "last_name": "</>",
+            "username": "Yowliii",
+            "language_code": "en"
+          },
+          "chat": {
+            "id": 1924206240,
+            "first_name": "Yowlshi",
+            "last_name": "</>",
+            "username": "Yowliii",
+            "type": "private"
+          },
+          "date": 1783744355,
+          "document": {
+            "file_name": "Messenger_creation_F82674CD-D21C-44E8-8CE2-49C21EBBEE2A.jpeg",
+            "mime_type": "image/jpeg",
+            "thumbnail": {
+              "file_id": "AAMCBQADGQEAAwRqUcdjSUUSmxz5jIc3O1SAmE4eOQACViMAApI0iVYoAYjERYAGMQEAB20AAzwE",
+              "file_unique_id": "AQADViMAApI0iVZy",
+              "file_size": 18679,
+              "width": 256,
+              "height": 320
+            },
+            "thumb": {
+              "file_id": "AAMCBQADGQEAAwRqUcdjSUUSmxz5jIc3O1SAmE4eOQACViMAApI0iVYoAYjERYAGMQEAB20AAzwE",
+              "file_unique_id": "AQADViMAApI0iVZy",
+              "file_size": 18679,
+              "width": 256,
+              "height": 320
+            },
+            "file_id": "BQACAgUAAxkBAAMEalHHY0lFEpsc-YyHNztUgJhOHjkAAlYjAAKSNIlWKAGIxEWABjE8BA",
+            "file_unique_id": "AgADViMAApI0iVY",
+            "file_size": 165075
+          }
+        }
+      }
+    ]
+  },
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
