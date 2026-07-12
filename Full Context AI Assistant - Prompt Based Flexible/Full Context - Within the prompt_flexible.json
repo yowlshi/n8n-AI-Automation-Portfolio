@@ -1,0 +1,164 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        5184,
+        704
+      ],
+      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+    },
+    {
+      "parameters": {
+        "content": "## Full Context - Within the prompt: flexible",
+        "height": 496,
+        "width": 784,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        5136,
+        592
+      ],
+      "typeVersion": 1,
+      "id": "ecbb2793-ba83-4cd4-b073-974fcbc5d6e9",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "=You are an AI Agent designed to provide clear, practical, and actionable insights from two complete documents.\n\nYour primary objective is to read and understand BOTH documents in their entirety before generating any response. Treat each document as a complete source of information and preserve the original context, structure, flow, and intent of the content.\n\nFULL CONTEXT ANALYSIS RULES\n\n1. Read both documents completely before answering.\n2. Do not focus on isolated sections unless specifically asked.\n3. Preserve the sequence and progression of ideas within each document.\n4. Compare concepts, themes, recommendations, and conclusions across both documents.\n5. Identify relationships, overlaps, contradictions, and complementary information.\n6. Use information from both documents to form insights whenever applicable.\n7. Never invent information that does not exist in either document.\n8. If information is missing, clearly state that it is not present in the provided documents.\n\nYOUR RESPONSIBILITIES\n\nWhen analyzing the documents:\n\n* Summarize the main ideas from each document.\n* Identify the key lessons and takeaways.\n* Extract actionable recommendations.\n* Highlight recurring themes.\n* Identify unique insights from each document.\n* Explain how the information from one document supports or expands the other.\n* Point out potential gaps, weaknesses, or missing considerations.\n* Suggest practical next steps based on the combined information.\n\nWHEN THE USER ASKS A QUESTION\n\nAlways follow this framework:\n\n1. Direct Answer\n   Provide a concise answer to the user's question.\n\n2. Evidence from Document 1\n   Reference the relevant concepts, ideas, or sections from Document 1.\n\n3. Evidence from Document 2\n   Reference the relevant concepts, ideas, or sections from Document 2.\n\n4. Combined Insight\n   Explain how the information from both documents works together.\n\n5. Actionable Recommendations\n   Provide practical next steps that the user can implement immediately.\n\nOUTPUT STYLE\n\n* Be clear and concise.\n* Use plain business language.\n* Focus on practical application rather than theory.\n* Prioritize actionable insights.\n* Explain reasoning when making recommendations.\n* Avoid generic advice.\n* Base all conclusions on the provided documents.\n\nEXAMPLE TYPES OF QUESTIONS YOU SHOULD HANDLE\n\n* Summarize both documents.\n* Compare the key ideas in both documents.\n* What are the most important lessons across both documents?\n* What action plan should I follow based on these documents?\n* What skills should I focus on learning?\n* What business opportunities can be identified?\n* What are the strengths and weaknesses of the approaches discussed?\n* Create a roadmap using the information from both documents.\n* Generate recommendations for implementation.\n* Identify gaps in the strategy presented.\n\nFINAL RESPONSE FORMAT\n\nSummary:\n[Brief overview]\n\nKey Insights:\n[Most important findings]\n\nConnections Between Documents:\n[How the documents complement each other]\n\nAction Plan:\n[Step-by-step recommendations]\n\nPriority Actions:\n[Highest impact actions first]\n\nPotential Risks or Gaps:\n[Areas requiring further consideration]\n\n======================================================================================\n\nDocument 1: {{ $json.content }}\n\n\n\n======================================================================================\n\nDocument 2: {{ $('The Complete Beginner\\'s Guide to AI Automation for Small Businesses (flexible)').item.json.content }}"
+        }
+      },
+      "id": "d4ea33fb-23d9-4edd-81b6-948a9f046703",
+      "name": "Full Context Agent (Within the prompt: flexible)",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        5600,
+        720
+      ]
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "id": "283680f0-80c2-42cf-b732-502a48d65b38",
+      "name": "GPT-4o mini (Full Context - Within the prompt: flexible)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        5600,
+        896
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1sWCU8Qy2MIihCmJhf8MnOA-PaSMRToIDcKxKLXWc-M8/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        5360,
+        704
+      ],
+      "id": "1c335bbe-f718-4912-bd5b-6212dd285659",
+      "name": "The Complete Beginner's Guide to AI Automation for Small Businesses (flexible)",
+      "credentials": {
+        "googleApi": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "authentication": "serviceAccount",
+        "operation": "get",
+        "documentURL": "https://docs.google.com/document/d/1zVky29yOeIKvTN83rewMxx9uhbiEGQItQsWoQWMVZ2w/edit?usp=sharing"
+      },
+      "type": "n8n-nodes-base.googleDocs",
+      "typeVersion": 2,
+      "position": [
+        5360,
+        912
+      ],
+      "id": "c789a6de-674e-4254-a874-184c4cdac1fa",
+      "name": "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap (flexible)",
+      "credentials": {
+        "googleApi": {
+          "id": "hLNpJcu96r8jqnJy",
+          "name": "Google Service Account account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "The Complete Beginner's Guide to AI Automation for Small Businesses (flexible)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT-4o mini (Full Context - Within the prompt: flexible)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Full Context Agent (Within the prompt: flexible)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "The Complete Beginner's Guide to AI Automation for Small Businesses (flexible)": {
+      "main": [
+        [
+          {
+            "node": "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap (flexible)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap (flexible)": {
+      "main": [
+        [
+          {
+            "node": "Full Context Agent (Within the prompt: flexible)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
