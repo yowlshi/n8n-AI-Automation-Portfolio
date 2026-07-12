@@ -1,0 +1,315 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": {
+          "__rl": true,
+          "value": "1ZKBwAnk3P2qB43zN7eGdBbsqyibfeE6N",
+          "mode": "list",
+          "cachedResultName": "Knowledge Base Documents",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1ZKBwAnk3P2qB43zN7eGdBbsqyibfeE6N"
+        },
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "b0d6d058-e2eb-42ef-9bb6-208196dab8dc",
+      "name": "File Created - Knowledge base documents",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        112
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Y7yuEVstZgnCxhvO",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "vectorized",
+          "mode": "list",
+          "cachedResultName": "vectorized"
+        },
+        "options": {
+          "queryName": "match_vectorized"
+        }
+      },
+      "id": "862e2c73-58cb-4e78-bf99-2ef7ef863343",
+      "name": "Supabase Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        448,
+        0
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "dNI6BiuiTu0ugvmk",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "file_id",
+                "value": "={{ $('File Created - Knowledge base documents').item.json.id }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "2e492003-b0d1-4160-9eed-db6c0be776f0",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1.1,
+      "position": [
+        672,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        928,
+        0
+      ],
+      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "id": "7b369c26-4e13-46e6-bd25-6f84b40d5d47",
+      "name": "OpenRouter Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        224
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4a6cb69e-53c5-4877-913e-65139d9f328d",
+      "name": "RAG Knowledge-based Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1152,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-embedding-2"
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        496,
+        208
+      ],
+      "id": "c8628a6b-6a89-46c6-b32b-c5c7f720ab9e",
+      "name": "Embeddings Google Gemini",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Qm4aKJEh2ZnVzb1l",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## RAG-Powered Employee Handbook Assistant\n",
+        "height": 576,
+        "width": 1632,
+        "color": "#1A130E"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -32,
+        -112
+      ],
+      "typeVersion": 1,
+      "id": "aed7f9dc-d67c-4aae-ac75-871b1cfd01fe",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolDescription": "use this tool to retrieve information from the Angelo Automates Employee Handbook",
+        "tableName": {
+          "__rl": true,
+          "value": "vectorized",
+          "mode": "list",
+          "cachedResultName": "vectorized"
+        },
+        "options": {
+          "queryName": "match_vectorized"
+        }
+      },
+      "id": "a4e8045c-41ed-4f76-96f7-b9f1b5060850",
+      "name": "Retrieve Document Information",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        240
+      ],
+      "credentials": {
+        "supabaseApi": {
+          "id": "dNI6BiuiTu0ugvmk",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "39e31302-cb67-4b82-8f37-507bdcf82c4a",
+      "name": "Download Employee Handbook",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        224,
+        112
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "Y7yuEVstZgnCxhvO",
+          "name": "Google Drive account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "File Created - Knowledge base documents": {
+      "main": [
+        [
+          {
+            "node": "Download Employee Handbook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "RAG Knowledge-based Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "RAG Knowledge-based Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings Google Gemini": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Retrieve Document Information",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Retrieve Document Information": {
+      "ai_tool": [
+        [
+          {
+            "node": "RAG Knowledge-based Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Employee Handbook": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
