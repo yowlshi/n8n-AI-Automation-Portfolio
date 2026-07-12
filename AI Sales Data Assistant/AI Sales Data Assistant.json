@@ -1,0 +1,258 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        2464,
+        -16
+      ],
+      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "0YjikOevs1gKwosQ",
+          "mode": "list",
+          "cachedResultName": "Online Sales Data",
+          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "Product_Name",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "limit": {}
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1.1,
+      "position": [
+        2720,
+        208
+      ],
+      "id": "3cc8f3f2-8398-4be4-b6d6-7521596688cd",
+      "name": "Product Name"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4o-mini",
+        "options": {}
+      },
+      "id": "0d50709f-d955-4170-a543-e38d8cca4c06",
+      "name": "OpenRouter Chat Model (Sales)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        2416,
+        208
+      ],
+      "credentials": {
+        "openRouterApi": {
+          "id": "G3hLUvTCWJRM9bq4",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        3120,
+        208
+      ],
+      "id": "5494d2a7-efc7-4458-a403-9be1b325afe3",
+      "name": "Calculator (Sales)"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "0YjikOevs1gKwosQ",
+          "mode": "list",
+          "cachedResultName": "Online Sales Data",
+          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "Date",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "limit": {}
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1.1,
+      "position": [
+        2832,
+        208
+      ],
+      "id": "8bc74727-79bd-43ab-9612-2b63b197ebc3",
+      "name": "Date"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "0YjikOevs1gKwosQ",
+          "mode": "list",
+          "cachedResultName": "Online Sales Data",
+          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+        },
+        "matchType": "allConditions",
+        "filters": {
+          "conditions": [
+            {
+              "keyName": "Transaction_ID",
+              "keyValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('conditions0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "limit": {}
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1.1,
+      "position": [
+        2960,
+        208
+      ],
+      "id": "e4b39f99-c465-4f87-ac65-ed37cbacab5e",
+      "name": "Transaction ID"
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "dataTableId": {
+          "__rl": true,
+          "value": "0YjikOevs1gKwosQ",
+          "mode": "list",
+          "cachedResultName": "Online Sales Data",
+          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+        },
+        "matchType": "allConditions",
+        "returnAll": true
+      },
+      "type": "n8n-nodes-base.dataTableTool",
+      "typeVersion": 1.1,
+      "position": [
+        2608,
+        208
+      ],
+      "id": "02ed435f-5305-48ce-a6ee-2fc98ed6dae5",
+      "name": "All Rows"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0c9b5e2b-9230-4056-8f4c-53cd7a8292fa",
+      "name": "Online Sales Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        2656,
+        -16
+      ]
+    }
+  ],
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Product Name": {
+      "ai_tool": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model (Sales)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator (Sales)": {
+      "ai_tool": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Date": {
+      "ai_tool": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transaction ID": {
+      "ai_tool": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "All Rows": {
+      "ai_tool": [
+        [
+          {
+            "node": "Online Sales Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+  }
+}
