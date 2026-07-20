@@ -13,15 +13,14 @@
         1456,
         -384
       ],
-      "id": " ",
+      "id": "3909c65f-e9c1-42ae-a254-e265ae729581",
       "name": "Get_slots",
-      "webhookId": " "
+      "webhookId": "bdcee7f9-9112-4e81-a019-4f55b55b0df8"
     },
     {
       "parameters": {
         "httpMethod": "POST",
         "path": "call-results",
-        "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
@@ -30,18 +29,18 @@
         1488,
         2336
       ],
-      "id": " ",
+      "id": "cbdec208-b17c-4702-b488-2c9e5dc9c1ec",
       "name": "Call_results",
-      "webhookId": " "
+      "webhookId": "bdcee7f9-9112-4e81-a019-4f55b55b0df8"
     },
     {
       "parameters": {
         "resource": "calendar",
         "calendar": {
           "__rl": true,
-          "value": " ",
+          "value": "angelo.automates@gmail.com",
           "mode": "list",
-          "cachedResultName": " "
+          "cachedResultName": "angelo.automates@gmail.com"
         },
         "timeMin": "={{ $json.starttime.toDateTime() }}",
         "timeMax": "={{ $json.endtime.toDateTime()|| $now.plus( 1, 'hour').toISO() }}",
@@ -50,14 +49,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2080,
+        2288,
         -384
       ],
-      "id": " ",
+      "id": "ec77a237-0847-4eb2-a675-406e0780a997",
       "name": "Check for availability",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": " ",
+          "id": "Nvp0elOjwelyE6Iz",
           "name": "Google Calendar account"
         }
       }
@@ -71,10 +70,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2496,
+        2704,
         -480
       ],
-      "id": " ",
+      "id": "7557daa4-693e-4398-987a-292153945a23",
       "name": "Respond Availability"
     },
     {
@@ -88,7 +87,7 @@
           },
           "conditions": [
             {
-              "id": " ",
+              "id": "96c705b5-67fc-4aa9-8269-4266ba68e79c",
               "leftValue": "={{ $json.available }}",
               "rightValue": false,
               "operator": {
@@ -105,10 +104,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2288,
+        2496,
         -384
       ],
-      "id": " ",
+      "id": "2444858b-58ba-4ba7-ae40-1ccea233486f",
       "name": "If availability is true or no"
     },
     {
@@ -116,9 +115,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": " ",
+          "value": "angelo.automates@gmail.com",
           "mode": "list",
-          "cachedResultName": " "
+          "cachedResultName": "angelo.automates@gmail.com"
         },
         "returnAll": true,
         "timeMin": "={{ $now.toISO() }}",
@@ -130,15 +129,15 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2496,
+        2704,
         -288
       ],
-      "id": " ",
+      "id": "967ba574-a8ef-47f2-bec6-5c652a9626b8",
       "name": "Get all events",
       "alwaysOutputData": true,
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": " ",
+          "id": "Nvp0elOjwelyE6Iz",
           "name": "Google Calendar account"
         }
       }
@@ -148,25 +147,25 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "69c101fa-6777-44a0-b86c-078bec5a46d3",
               "name": "start",
               "value": "={{ DateTime.fromISO($json.start.dateTime).toLocaleString(DateTime.DATE_HUGE) }}, {{ DateTime.fromISO($json.start.dateTime).toLocaleString(DateTime.TIME_24_WITH_SHORT_OFFSET) }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "f1ab5a88-7b69-4437-a516-d939ebacbd8f",
               "name": "end",
               "value": "={{ DateTime.fromISO($json.end.dateTime).toLocaleString(DateTime.DATE_HUGE) }}, {{ DateTime.fromISO($json.end.dateTime).toLocaleString(DateTime.TIME_24_WITH_SHORT_OFFSET) }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "9c63a867-472f-4547-b61c-6ee5a875f4d9",
               "name": "name",
               "value": "={{ $json.summary }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "11d50839-3e1a-4a72-b4b9-5ee4b9775ec2",
               "name": "sort",
               "value": "={{ $json.start.dateTime }}",
               "type": "string"
@@ -180,10 +179,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2704,
+        2912,
         -288
       ],
-      "id": " ",
+      "id": "0916aef1-dff5-4913-893c-c2b255cfde28",
       "name": "Extract Event Details"
     },
     {
@@ -200,10 +199,10 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        2912,
+        3120,
         -288
       ],
-      "id": " ",
+      "id": "f1169353-597e-4946-a8a4-ba426cc64261",
       "name": "Sort"
     },
     {
@@ -217,10 +216,10 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        3120,
+        3328,
         -288
       ],
-      "id": " ",
+      "id": "c4ac0528-ab12-4abb-b4ee-499c7471c17c",
       "name": "Formatted Response"
     },
     {
@@ -230,10 +229,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3328,
+        3536,
         -288
       ],
-      "id": " ",
+      "id": "f9b50946-cba9-4463-ab73-3e0fa9ab268a",
       "name": "Available start time & ranges"
     },
     {
@@ -249,9 +248,9 @@
         1456,
         288
       ],
-      "id": " ",
+      "id": "f9f6ae20-79e6-42cf-a3f5-2cfa0f8c742f",
       "name": "Book_slots",
-      "webhookId": " "
+      "webhookId": "1fdd5cad-9d06-4683-96c4-58da0ac5f867"
     },
     {
       "parameters": {
@@ -263,7 +262,7 @@
         1648,
         288
       ],
-      "id": " ",
+      "id": "954c4f83-5776-43b5-99d4-8d070c8e3501",
       "name": "safe_arguments: extractedArgs(Book_slots)"
     },
     {
@@ -271,61 +270,61 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "770e29ec-8a9d-4794-bde8-022b8d3f1720",
               "name": "ToolCallId",
               "value": "={{ $json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "41f21674-146e-4db9-9dcd-a2be667bdfce",
               "name": "timeZone",
-              "value": "Asia/Manila",
+              "value": "=Asia/Manila",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "cb94b82e-5210-49fe-bc6c-91d413a79943",
               "name": "name",
               "value": "={{ $json.safe_arguments.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "1c8a1c55-242b-497a-a3de-a8221fe17901",
               "name": "email",
               "value": "={{ $json.safe_arguments.email }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "d199680c-2856-43da-9f4f-1a028a8c64bd",
               "name": "language",
               "value": "en",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "b57ccea4-e930-46dd-81b6-541faa1dfe31",
               "name": "notes",
               "value": "={{ $json.safe_arguments.notes }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "6c7111b8-37ee-410d-b162-15468bbebd85",
               "name": "starttime",
               "value": "={{ $json.safe_arguments.starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "10b15a7e-d731-4332-9e0c-345e967b9fde",
               "name": "endtime",
               "value": "={{ $json.safe_arguments.endtime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "cfe23a4e-d90b-45c6-bc23-735df7aa1b72",
               "name": "Title",
               "value": "={{ $json.safe_arguments.Title }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "da760c3b-18a7-4ef3-921e-331239003419",
               "name": "customer_number",
               "value": "={{ $json.body.message.call.customer.number }}",
               "type": "string"
@@ -340,7 +339,7 @@
         1840,
         288
       ],
-      "id": " ",
+      "id": "d6d9b75a-d053-4fa1-b77b-9902af441193",
       "name": "Input Arguments (Book_slots)"
     },
     {
@@ -353,7 +352,7 @@
         1664,
         -384
       ],
-      "id": " ",
+      "id": "c56ffd7a-981a-4e32-b55b-223efe3fab04",
       "name": "safe_arguments: extractedArgs (Get_slots)"
     },
     {
@@ -361,31 +360,31 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "90b32eed-bd27-41bf-ae54-1a46a4cce99b",
               "name": "timeZone",
-              "value": "Philippines/Manila",
+              "value": "=Asia/Manila",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "49c7039d-ce4a-4618-bd97-6e308efcc4a7",
               "name": "starttime",
               "value": "={{ $json.safe_arguments.starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "4ca7d1ef-3f9a-47bf-ad2e-646aa8907333",
               "name": "body.message.toolCalls[0].id",
               "value": "={{ $json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "d8d5a6f3-54ad-41e5-ad7f-0c9587f8df0a",
               "name": "customer.number",
               "value": "={{ $json.body.message.call.customer.number }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "75a6f8da-0820-4c4c-b9b8-567dffbe4bcd",
               "name": "endtime",
               "value": "={{ $json.safe_arguments.endtime }}",
               "type": "string"
@@ -400,7 +399,7 @@
         1872,
         -384
       ],
-      "id": " ",
+      "id": "0d38cda1-c1a3-421e-87b0-41acaae5b3cd",
       "name": "Input Arguments (Get_slots)"
     },
     {
@@ -414,7 +413,7 @@
         2240,
         256
       ],
-      "id": " ",
+      "id": "950286a9-32d8-44e2-b8c3-f154731ab357",
       "name": "Ecape JSON"
     },
     {
@@ -422,61 +421,61 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "965cbcc6-8de5-48ee-b9bd-bab8969560ef",
               "name": "id",
               "value": "={{ $json.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "0f396874-f5ac-445b-bfed-270a34d103da",
               "name": "description",
               "value": "={{ $json.description }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "f1098782-b93c-4eda-aa8f-124170e97400",
               "name": "starttime",
               "value": "={{ $json.start.dateTime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "1b07e178-8f67-4c1c-8d23-b49691fd4cd8",
               "name": "status",
               "value": "={{ $json.status }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "bd668c7f-b441-45f7-8ce3-b908c27d47aa",
               "name": "timeZone",
               "value": "={{ $json.end.timeZone }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "c6ab86d2-2fbd-4e7b-93e0-75b26bbda823",
               "name": "attendees",
               "value": "={{ $json.attendess }}",
               "type": "array"
             },
             {
-              "id": " ",
+              "id": "9ee90d2d-85bf-42af-8202-2fcc5d905a67",
               "name": "hangoutLink",
               "value": "={{ $json.hangoutLink }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "bc04c152-bf05-4123-81d5-77e450a4f49b",
               "name": "Title",
               "value": "={{ $json.summary }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "ab07cc73-461c-41bb-ab3b-d20eaf5a852e",
               "name": "endtime",
               "value": "={{ $json.end.dateTime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "be315bd4-8ab2-43b4-8c37-ebf068297afd",
               "name": "email",
               "value": "={{ $json.attendees[0].email }}",
               "type": "string"
@@ -490,10 +489,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2704,
+        2912,
         176
       ],
-      "id": " ",
+      "id": "1b2ba9f0-7840-4dee-b60b-03ae5fc6dc43",
       "name": "Booking Payload"
     },
     {
@@ -501,13 +500,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "9a1a4e5a-2a8a-473d-bf07-13a237d56395",
               "name": "results[0].toolCallId",
               "value": "={{ $('Input Arguments (Book_slots)').item.json.ToolCallId }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "9e2d6407-3285-49e0-9a66-2d0431be15c0",
               "name": "results[0].result",
               "value": "={{ $json.status }}",
               "type": "string"
@@ -519,10 +518,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2912,
+        3120,
         176
       ],
-      "id": " ",
+      "id": "b8c4094b-2921-4dfc-a77c-d99bfee80a8b",
       "name": "Success response"
     },
     {
@@ -534,10 +533,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3120,
+        3328,
         272
       ],
-      "id": " ",
+      "id": "ff3e1495-d79e-412a-8c24-14b13341f25d",
       "name": "Respond to book_slots"
     },
     {
@@ -551,7 +550,7 @@
           },
           "conditions": [
             {
-              "id": " ",
+              "id": "50cc7213-1562-4422-9d25-e825041346a6",
               "leftValue": "={{ $json.results[0].result }}",
               "rightValue": "confirmed",
               "operator": {
@@ -567,10 +566,10 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.3,
       "position": [
-        3328,
+        3536,
         272
       ],
-      "id": " ",
+      "id": "fba4e68e-5123-41ac-9f4b-37f7a5137152",
       "name": "check if booking is confirmed"
     },
     {
@@ -578,85 +577,85 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "da3274c7-c6e8-4a9b-ac15-46887f5d5028",
               "name": "startTime",
               "value": "={{ $('Booking Payload').item.json.starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "7b974608-4763-4167-a8f7-318edf67dd33",
               "name": "endTime",
               "value": "={{ $('Booking Payload').item.json.endtime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "787d3d14-678b-4762-b30f-f749c719b1b4",
               "name": "status",
               "value": "={{ $('Booking Payload').item.json.status }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "3d10ed24-a6af-4bbb-b1ea-b8e701560eb3",
               "name": "timeZone",
               "value": "={{ $('Booking Payload').item.json.timeZone }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "51bb429d-85a1-464e-9d60-de4cce709503",
               "name": "description",
               "value": "={{ $('Booking Payload').item.json.description }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "501b5edf-6e25-42d4-80ff-0db3b0caf808",
               "name": "attendees[0].responseStatus",
               "value": "={{ $('Create an event').item.json.attendees[0].responseStatus }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "738fee29-631b-403e-9fa7-f360f6a339a4",
               "name": "attendees[0].email",
               "value": "={{ $('Booking Payload').item.json.email }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "b3d8f28c-4b51-4b2a-a447-34ca7c286f83",
               "name": "hangoutLink",
               "value": "={{ $('Booking Payload').item.json.hangoutLink }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "44e299ff-8b98-4d36-855b-8a92bee3f6d6",
               "name": "attendee.name",
               "value": "={{ $('safe_arguments: extractedArgs(Book_slots)').item.json.safe_arguments.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "65448e8f-fc8e-4a09-a548-31c543c1f3a1",
               "name": "call.id",
               "value": "={{ $('Book_slots').item.json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "f4dba07a-7d25-4f19-966d-b7ea06dd0c2d",
               "name": "assistant.name",
               "value": "={{ $('Book_slots').item.json.body.message.assistant.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "6e54138f-ec24-4b20-b71f-f58b16ad4545",
               "name": "event.id",
               "value": "={{ $('Create an event').item.json.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "36deb729-e0f5-484f-b7c8-3ed98de6f548",
               "name": "Title",
               "value": "={{ $('Booking Payload').item.json.Title }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "7d3d01f2-f99d-4da9-8444-a5b57f155a3e",
               "name": "customer_number",
               "value": "={{ $('Input Arguments (Book_slots)').item.json.customer_number }}",
               "type": "string"
@@ -668,10 +667,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3536,
+        3744,
         272
       ],
-      "id": " ",
+      "id": "d127d59d-fe7f-4361-b94f-5bb34eda765b",
       "name": "Details to be saved to Airtable"
     },
     {
@@ -679,17 +678,17 @@
         "operation": "create",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tblF8LF9lmkHMbk7v",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -851,14 +850,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        3744,
+        3952,
         272
       ],
-      "id": " ",
+      "id": "a29fade4-a449-4a42-a3fc-f35e463c9741",
       "name": "Record the details",
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -871,10 +870,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2704,
+        2912,
         400
       ],
-      "id": " ",
+      "id": "2cc5e16c-26a3-4a29-bc8a-a84882fe2bb7",
       "name": "Send error message"
     },
     {
@@ -882,13 +881,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "0d4a596e-4137-4838-a83a-b8b7cb5365a9",
               "name": "results[0].toolCallId",
               "value": "={{ $('Input Arguments (Book_slots)').item.json.ToolCallId }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "808f8060-c73e-489c-84e7-c827ce125629",
               "name": "results[0].result",
               "value": "={{ $json.message || $json.status }}",
               "type": "string"
@@ -900,10 +899,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2912,
+        3120,
         400
       ],
-      "id": " ",
+      "id": "0c62f7e8-8149-40ce-9409-29fdc55b2545",
       "name": "Error response"
     },
     {
@@ -919,9 +918,9 @@
         1456,
         1024
       ],
-      "id": " ",
+      "id": "5f8c3805-b385-4c36-b5eb-58f7ef5f10ff",
       "name": "Update_slots",
-      "webhookId": " "
+      "webhookId": "a9a6f8d8-6d10-4dc3-9bc2-19ab7120a503"
     },
     {
       "parameters": {
@@ -933,7 +932,7 @@
         1648,
         1024
       ],
-      "id": " ",
+      "id": "f440c095-bc38-4ae5-be9e-e31e401b5a09",
       "name": "safe_arguments: extractedArgs(Update_slots)"
     },
     {
@@ -941,55 +940,55 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "af5bf27b-aded-41a8-9bd7-238ebe68850b",
               "name": "Calls[0].Id",
               "value": "={{ $json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "c5eaa25a-babb-4029-b359-de895269fe9f",
               "name": "name",
               "value": "={{ $json.safe_arguments.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "bb984838-c929-4bbe-b029-a25112fb8245",
               "name": "email",
               "value": "={{ $json.safe_arguments.email }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "58b5875d-b310-4614-8143-450a40543a99",
               "name": "starttime",
               "value": "={{ $json.safe_arguments.starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "dafb683f-f5c5-4581-ad83-aa1431e4825a",
               "name": "endtime",
               "value": "={{ $json.safe_arguments.endtime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "e47f5402-b1bc-47f5-a7c8-a464466133a9",
               "name": "call.Id",
               "value": "={{ $json.body.message.call.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "d186cfe3-9d30-4031-b939-6e5f20b9a958",
               "name": "safe_arguments.Rescheduled_starttime",
               "value": "={{ $json.safe_arguments.Rescheduled_starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "82627457-9deb-4c4d-9e59-9895d025183d",
               "name": "safe_arguments.Rescheduled_endtime",
               "value": "={{ $json.safe_arguments.Rescheduled_endtime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "4bec4776-166b-4c65-a727-c6425a5b10db",
               "name": "customer_number",
               "value": "={{ $json.body.message.call.customer.number  }}",
               "type": "string"
@@ -1004,7 +1003,7 @@
         1840,
         1024
       ],
-      "id": " ",
+      "id": "8393f4c9-601e-43e3-a3ff-8ce8554d4f69",
       "name": "Input Arguments (Update_slots)"
     },
     {
@@ -1018,7 +1017,7 @@
           },
           "conditions": [
             {
-              "id": " ",
+              "id": "72e39e1d-5c13-4b31-8f91-c9c9c53fe82f",
               "leftValue": "={{ ($json.email).isEmail() }}",
               "rightValue": "",
               "operator": {
@@ -1038,7 +1037,7 @@
         2048,
         288
       ],
-      "id": " ",
+      "id": "61eeb3c6-15b7-4b11-b631-5e8fedc1f29f",
       "name": "to verify (book_slots)"
     },
     {
@@ -1052,7 +1051,7 @@
           },
           "conditions": [
             {
-              "id": " ",
+              "id": "689a39a6-35fe-4213-85b7-50988074de3f",
               "leftValue": "={{ $json.name }}",
               "rightValue": "",
               "operator": {
@@ -1062,7 +1061,7 @@
               }
             },
             {
-              "id": " ",
+              "id": "a1ac5832-3824-4878-936c-fb39c054c03c",
               "leftValue": "={{ $json.email }}",
               "rightValue": "",
               "operator": {
@@ -1072,7 +1071,7 @@
               }
             },
             {
-              "id": " ",
+              "id": "574817c6-a9c0-411b-8eb1-73f2147c1156",
               "leftValue": "={{ $json.safe_arguments.Rescheduled_starttime }}",
               "rightValue": "",
               "operator": {
@@ -1082,7 +1081,7 @@
               }
             },
             {
-              "id": " ",
+              "id": "8e9b24b3-1753-4973-b8b7-296c317f7219",
               "leftValue": "={{ $json.safe_arguments.Rescheduled_endtime }}",
               "rightValue": "=",
               "operator": {
@@ -1102,7 +1101,7 @@
         2048,
         1024
       ],
-      "id": " ",
+      "id": "022d70e4-f66f-497e-92ba-ef9247b6aeaa",
       "name": "to verify (update_slots)"
     },
     {
@@ -1110,17 +1109,17 @@
         "operation": "search",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tblF8LF9lmkHMbk7v",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
         },
         "filterByFormula": "={Phone Number} = (\"{{ $json.customer_number}}\")",
         "options": {
@@ -1135,14 +1134,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2288,
+        2480,
         944
       ],
-      "id": " ",
+      "id": "366fa648-f65c-41e2-a93e-df2daae417a2",
       "name": "Find primary appointment",
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1152,9 +1151,9 @@
         "operation": "update",
         "calendar": {
           "__rl": true,
-          "value": " ",
+          "value": "angelo.automates@gmail.com",
           "mode": "list",
-          "cachedResultName": " "
+          "cachedResultName": "angelo.automates@gmail.com"
         },
         "eventId": "={{ $json.fields.eventId }}",
         "updateFields": {
@@ -1166,14 +1165,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2496,
+        2704,
         944
       ],
-      "id": " ",
+      "id": "d46fcf70-eca3-457a-af07-40ea2f7bef51",
       "name": "Update an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": " ",
+          "id": "Nvp0elOjwelyE6Iz",
           "name": "Google Calendar account"
         }
       },
@@ -1188,10 +1187,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3056,
+        3264,
         1040
       ],
-      "id": " ",
+      "id": "6782697c-c372-4d4e-a9ff-2dc9f78cb5c1",
       "name": "Respond to Webhook (Update_slots)"
     },
     {
@@ -1199,13 +1198,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "8f65b619-0e42-4677-a06f-5782e1ff2fbd",
               "name": "results[0].toolCallId",
               "value": "={{ $('Update_slots').item.json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "f220c128-5b91-47bd-a84a-5a52ce0b8521",
               "name": "results[0].result",
               "value": "={{ $json.error || $json.fields['Booking Status'] }}",
               "type": "string"
@@ -1217,10 +1216,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2848,
+        3056,
         1040
       ],
-      "id": " ",
+      "id": "048ebc41-029d-412a-b4fe-4f22e7ad4498",
       "name": "Response error or status & call ID"
     },
     {
@@ -1235,7 +1234,7 @@
         2416,
         480
       ],
-      "id": " ",
+      "id": "43457af9-30fe-4f57-8681-e5bdc39b4a92",
       "name": "Respond with error message (book_slots)"
     },
     {
@@ -1245,10 +1244,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2496,
+        2704,
         1136
       ],
-      "id": " ",
+      "id": "35d550ca-2d72-4c1f-ba63-1c75c37dd4be",
       "name": "Respond with error message (update_slots)"
     },
     {
@@ -1260,10 +1259,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3536,
+        3744,
         -288
       ],
-      "id": " ",
+      "id": "41561526-1c45-44e4-981c-03334e0592fb",
       "name": "Respond to Webhook (Get_slots)"
     },
     {
@@ -1279,9 +1278,9 @@
         1488,
         1728
       ],
-      "id": " ",
+      "id": "eabd6b48-fe52-4093-9282-2f6161d05690",
       "name": "Cancel_slots",
-      "webhookId": " "
+      "webhookId": "12d6968b-6185-4068-b28c-513949f16d8e"
     },
     {
       "parameters": {
@@ -1293,7 +1292,7 @@
         1680,
         1728
       ],
-      "id": " ",
+      "id": "7edb4dba-54bb-4f99-95c9-a90e005c816e",
       "name": "safe_arguments: extractedArgs(Cancel_slots)"
     },
     {
@@ -1301,43 +1300,43 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "af5bf27b-aded-41a8-9bd7-238ebe68850b",
               "name": "Calls[0].Id",
               "value": "={{ $json.body.message.toolCalls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "c5eaa25a-babb-4029-b359-de895269fe9f",
               "name": "name",
               "value": "={{ $json.safe_arguments.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "bb984838-c929-4bbe-b029-a25112fb8245",
               "name": "email",
               "value": "={{ $json.safe_arguments.email }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "58b5875d-b310-4614-8143-450a40543a99",
               "name": "starttime",
               "value": "={{ $json.safe_arguments.starttime }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "72da1fd3-cb84-4e0f-84f1-3d99fd3b92c5",
               "name": "Cancelnotes",
               "value": "={{ $json.safe_arguments.Cancelnotes }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "e47f5402-b1bc-47f5-a7c8-a464466133a9",
               "name": "call.Id",
               "value": "={{ $json.body.message.call.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "4bec4776-166b-4c65-a727-c6425a5b10db",
               "name": "customer_number",
               "value": "={{ $json.body.message.call.customer.number  }}",
               "type": "string"
@@ -1352,7 +1351,7 @@
         1872,
         1728
       ],
-      "id": " ",
+      "id": "2c752b60-aa61-4e6e-bce1-ce1972203121",
       "name": "Input Arguments (Cancel_slots)"
     },
     {
@@ -1366,7 +1365,7 @@
           },
           "conditions": [
             {
-              "id": " ",
+              "id": "689a39a6-35fe-4213-85b7-50988074de3f",
               "leftValue": "={{ $json.name }}",
               "rightValue": "",
               "operator": {
@@ -1376,7 +1375,7 @@
               }
             },
             {
-              "id": " ",
+              "id": "a1ac5832-3824-4878-936c-fb39c054c03c",
               "leftValue": "={{ $json.email }}",
               "rightValue": "",
               "operator": {
@@ -1386,7 +1385,7 @@
               }
             },
             {
-              "id": " ",
+              "id": "574817c6-a9c0-411b-8eb1-73f2147c1156",
               "leftValue": "={{ $json.starttime }}",
               "rightValue": "",
               "operator": {
@@ -1406,7 +1405,7 @@
         2080,
         1728
       ],
-      "id": " ",
+      "id": "88dd9f3a-225d-413b-984f-dc7046819a18",
       "name": "to verify (cancel_slots)"
     },
     {
@@ -1414,17 +1413,17 @@
         "operation": "search",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tblF8LF9lmkHMbk7v",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
         },
         "filterByFormula": "={Phone Number} = (\"{{ $json.customer_number}}\")",
         "options": {
@@ -1442,12 +1441,12 @@
         2288,
         1632
       ],
-      "id": " ",
+      "id": "f6198683-b63d-4501-a2f6-fa12914bc9de",
       "name": "Find appointment",
       "alwaysOutputData": true,
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1457,9 +1456,9 @@
         "operation": "delete",
         "calendar": {
           "__rl": true,
-          "value": " ",
+          "value": "angelo.automates@gmail.com",
           "mode": "list",
-          "cachedResultName": " "
+          "cachedResultName": "angelo.automates@gmail.com"
         },
         "eventId": "={{ $json.fields.eventId }}",
         "options": {
@@ -1472,11 +1471,11 @@
         2496,
         1632
       ],
-      "id": " ",
+      "id": "c9b00850-d0c8-4c85-9479-144959b9f971",
       "name": "Delete an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": " ",
+          "id": "Nvp0elOjwelyE6Iz",
           "name": "Google Calendar account"
         }
       },
@@ -1487,17 +1486,17 @@
         "operation": "update",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tblF8LF9lmkHMbk7v",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1662,14 +1661,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2688,
+        2896,
         848
       ],
-      "id": " ",
+      "id": "04aafa28-21bc-419b-babf-a3ac52ea8517",
       "name": "Update record (rescheduled)",
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1679,17 +1678,17 @@
         "operation": "update",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tblF8LF9lmkHMbk7v",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1855,11 +1854,11 @@
         2704,
         1504
       ],
-      "id": " ",
+      "id": "8dfbae31-1f8f-4d52-a8fe-ca8fd9023569",
       "name": "Update record (canceled)",
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1869,13 +1868,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "8f65b619-0e42-4677-a06f-5782e1ff2fbd",
               "name": "results[0].toolCallId",
               "value": "={{ $('Input Arguments (Cancel_slots)').item.json.Calls[0].Id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "f220c128-5b91-47bd-a84a-5a52ce0b8521",
               "name": "results[0].result",
               "value": "={{ $json.error || $json.fields['Booking Status'] }}",
               "type": "string"
@@ -1890,7 +1889,7 @@
         2896,
         1632
       ],
-      "id": " ",
+      "id": "67a820e3-e46c-479e-aa0f-d2ecaf48d25e",
       "name": "Call Id & Response"
     },
     {
@@ -1905,7 +1904,7 @@
         3088,
         1632
       ],
-      "id": " ",
+      "id": "72d3f58e-239b-492b-9bb8-de4625b23771",
       "name": "Respond to Webhook (Cancel_slots)"
     },
     {
@@ -1913,13 +1912,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "a9831857-1b0a-4682-9362-fd92e1d90605",
               "name": "results[0].toolCallId",
               "value": "={{ $json.ToolCallId }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "86b47e51-5c44-492f-b577-32467d4680a1",
               "name": "results[0].result",
               "value": "you must provide an email, name and notes to call this tool",
               "type": "string"
@@ -1934,7 +1933,7 @@
         2208,
         480
       ],
-      "id": " ",
+      "id": "8a2ad7e1-52f2-4af7-b868-7653ca32eff6",
       "name": "Build Error Response Payload (book_slots)"
     },
     {
@@ -1942,13 +1941,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "e56c9cfd-80d0-416a-af20-be85cd2fbee5",
               "name": "results[0].toolCallId",
               "value": "={{ $('Input Arguments (Update_slots)').item.json.toolCallId || $json.Calls[0].id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "241b5719-503d-458e-a786-35eda31d84bf",
               "name": "results[0].result",
               "value": "=you must provide an email, name, previous starttime & endtime and rescheduled starttime to call this tool",
               "type": "string"
@@ -1963,7 +1962,7 @@
         2288,
         1136
       ],
-      "id": " ",
+      "id": "c1ea1192-8823-4851-a11b-e822264c3643",
       "name": "Error Response Payload (update_slots)"
     },
     {
@@ -1971,13 +1970,13 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "e56c9cfd-80d0-416a-af20-be85cd2fbee5",
               "name": "results[0].toolCallId",
               "value": "={{ $('Input Arguments (Cancel_slots)').item.json.Calls[0].Id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "241b5719-503d-458e-a786-35eda31d84bf",
               "name": "results[0].result",
               "value": "=you must provide an email, name, previous starttime & endtime and rescheduled starttime to call this tool",
               "type": "string"
@@ -1992,7 +1991,7 @@
         2288,
         1920
       ],
-      "id": " ",
+      "id": "cf7749ee-f876-409e-818b-7be2758e0529",
       "name": "Error Response Payload (cancel_slots)"
     },
     {
@@ -2005,7 +2004,7 @@
         2496,
         1920
       ],
-      "id": " ",
+      "id": "2d25f5d6-fbfd-4092-b62b-9329387e8030",
       "name": "Respond with error message (cancel_slots)"
     },
     {
@@ -2013,91 +2012,91 @@
         "assignments": {
           "assignments": [
             {
-              "id": " ",
+              "id": "3a6f3539-cd20-4268-aeb8-a1629ec4960f",
               "name": "transcript",
               "value": "={{ $json.body.message.artifact.transcript }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "3796dcd8-2ed5-4915-bda0-18769886ed3f",
               "name": "recordingUrl",
               "value": "={{ $json.body.message.artifact.recordingUrl }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "32c30c75-6f9f-4dd9-8931-27626138643e",
               "name": "call.summary",
               "value": "={{ $json.body.message.analysis.summary }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "edbb1d29-80a5-4a17-acaf-b0e55ffd46f1",
               "name": "cost",
               "value": "={{ $json.body.message.cost }}",
               "type": "number"
             },
             {
-              "id": " ",
+              "id": "966d5009-a945-4ecd-8eec-82a3ee9b2105",
               "name": "call.id",
               "value": "={{ $json.body.message.call.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "2d5f347a-6c7a-4309-b8a1-32efec5a7cc1",
               "name": "call.orgId",
               "value": "={{ $json.body.message.call.orgId }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "0824aa98-4572-4b6e-8b28-93ec4b4e99e7",
               "name": "assistant.name",
               "value": "={{ $json.body.message.assistant.name }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "7390208f-32ab-44ee-9138-9ffa8d9992c4",
               "name": "startedAt",
               "value": "={{ $json.body.message.startedAt }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "7f2ee4d7-9ed6-4175-917b-54687ce26134",
               "name": "endedAt",
               "value": "={{ $json.body.message.endedAt }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "5ca82736-9558-4afb-ba03-e491418dd699",
               "name": "assistant.id",
               "value": "={{ $json.body.message.assistant.id }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "b222e6c0-5324-44db-b240-5ef2280ae3ac",
               "name": "assistant.model",
               "value": "={{ $json.body.message.assistant.model.model }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "a008f314-e92a-4965-b483-6c4ecb923413",
               "name": "body.message.assistant",
               "value": "={{ $json.body.message.assistant }}",
               "type": "object"
             },
             {
-              "id": " ",
+              "id": "51835b9b-9da7-4833-bf8a-053b2162a787",
               "name": "assistantId",
               "value": "={{ $json.body.message.call.assistantId }}",
               "type": "string"
             },
             {
-              "id": " ",
+              "id": "e2859e70-0f8e-4349-a6f9-d3887599c9ec",
               "name": "body.message.assistant.model.emotionRecognitionEnabled",
               "value": "={{ $json.body.message.assistant.model.emotionRecognitionEnabled }}",
               "type": "boolean"
             },
             {
-              "id": " ",
+              "id": "8ba28cab-d7bb-4a4e-b674-68956d884aa0",
               "name": "customer.number",
               "value": "={{ $json.body.message.call.customer.number }}",
               "type": "string"
@@ -2112,7 +2111,7 @@
         1696,
         2336
       ],
-      "id": " ",
+      "id": "4d21eab3-57eb-41fd-86b8-38889e4229d1",
       "name": "Input Arguments (Call_results)"
     },
     {
@@ -2120,17 +2119,17 @@
         "operation": "upsert",
         "base": {
           "__rl": true,
-          "value": " ",
+          "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
         },
         "table": {
           "__rl": true,
-          "value": " ",
+          "value": "tbl1b6vMhq9IT9JEZ",
           "mode": "list",
           "cachedResultName": "Call Recording",
-          "cachedResultUrl": " "
+          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tbl1b6vMhq9IT9JEZ"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -2302,11 +2301,11 @@
         1904,
         2336
       ],
-      "id": " ",
+      "id": "2ea9b84b-ae25-4519-847d-2a50d1d74420",
       "name": "Create or update a record",
       "credentials": {
         "airtableTokenApi": {
-          "id": " ",
+          "id": "fgLVJj4RMYLzuCyL",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -2315,7 +2314,7 @@
       "parameters": {
         "content": "## GET SLOTS",
         "height": 560,
-        "width": 2448,
+        "width": 2596,
         "color": "#7E9183"
       },
       "type": "n8n-nodes-base.stickyNote",
@@ -2324,14 +2323,14 @@
         -592
       ],
       "typeVersion": 1,
-      "id": " ",
+      "id": "5d1240f2-ce40-46bb-a84b-8ba8c7955faa",
       "name": "Sticky Note6"
     },
     {
       "parameters": {
         "content": "## BOOK SLOTS",
         "height": 544,
-        "width": 2624,
+        "width": 2900,
         "color": "#7E9183"
       },
       "type": "n8n-nodes-base.stickyNote",
@@ -2340,14 +2339,14 @@
         144
       ],
       "typeVersion": 1,
-      "id": " ",
+      "id": "b1e62cdf-766c-43a7-a51d-4a8379f43065",
       "name": "Sticky Note"
     },
     {
       "parameters": {
         "content": "## UPDATE SLOTS",
         "height": 560,
-        "width": 2032,
+        "width": 2132,
         "color": "#809385"
       },
       "type": "n8n-nodes-base.stickyNote",
@@ -2356,7 +2355,7 @@
         800
       ],
       "typeVersion": 1,
-      "id": " ",
+      "id": "905ba4cb-74bd-49f0-b641-47bb1e9b8e8b",
       "name": "Sticky Note1"
     },
     {
@@ -2372,7 +2371,7 @@
         1472
       ],
       "typeVersion": 1,
-      "id": " ",
+      "id": "f98ba575-28f2-4b4c-8300-c59a5933118d",
       "name": "Sticky Note2"
     },
     {
@@ -2388,16 +2387,16 @@
         2208
       ],
       "typeVersion": 1,
-      "id": " ",
+      "id": "7f10f9aa-faa7-4c17-af9a-9f9eb247b03e",
       "name": "Sticky Note3"
     },
     {
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": " ",
+          "value": "angelo.automates@gmail.com",
           "mode": "list",
-          "cachedResultName": " "
+          "cachedResultName": "angelo.automates@gmail.com"
         },
         "start": "={{ $json.starttime }}",
         "end": "={{ $json.endtime }}",
@@ -2419,18 +2418,57 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2448,
+        2656,
         256
       ],
-      "id": " ",
+      "id": "5e28385b-b7eb-4655-bb51-00a18fae160f",
       "name": "Create an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": " ",
+          "id": "Nvp0elOjwelyE6Iz",
           "name": "Google Calendar account"
         }
       },
       "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "function toISO(datetime) {\n  if (!datetime) return null;\n\n  if (datetime.includes(\"T\")) {\n    return datetime;\n  }\n\n  const [date, time, meridian] = datetime.split(\" \");\n\n  let [hour, minute] = time.split(\":\").map(Number);\n\n  if (meridian === \"PM\" && hour !== 12) hour += 12;\n  if (meridian === \"AM\" && hour === 12) hour = 0;\n\n  return `${date}T${String(hour).padStart(2, \"0\")}:${String(minute).padStart(2, \"0\")}:00+08:00`;\n}\n\nreturn [{\n  json: {\n    ...$json,\n    starttime: toISO($json.starttime),\n    endtime: toISO($json.endtime),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        -384
+      ],
+      "id": "1d5f7205-9d21-44db-8e2b-bcd1c2b3dada",
+      "name": "Convert DateTime to ISO 8601 (get slots)"
+    },
+    {
+      "parameters": {
+        "jsCode": "function toISO(datetime) {\n  if (!datetime) return null;\n\n  if (datetime.includes(\"T\")) {\n    return datetime;\n  }\n\n  const [date, time, meridian] = datetime.split(\" \");\n\n  let [hour, minute] = time.split(\":\").map(Number);\n\n  if (meridian === \"PM\" && hour !== 12) hour += 12;\n  if (meridian === \"AM\" && hour === 12) hour = 0;\n\n  return `${date}T${String(hour).padStart(2, \"0\")}:${String(minute).padStart(2, \"0\")}:00+08:00`;\n}\n\nreturn [{\n  json: {\n    ...$json,\n    starttime: toISO($json.starttime),\n    endtime: toISO($json.endtime),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2448,
+        256
+      ],
+      "id": "cdf8680f-a509-4c0f-8de7-adedf2739a8a",
+      "name": "Convert DateTime to ISO 8601 (book slots)"
+    },
+    {
+      "parameters": {
+        "jsCode": "function toISO(datetime) {\n  if (!datetime) return null;\n\n  // Already ISO? Just return it.\n  if (datetime.includes(\"T\")) return datetime;\n\n  const [date, time, meridian] = datetime.split(\" \");\n\n  let [hour, minute] = time.split(\":\").map(Number);\n\n  if (meridian === \"PM\" && hour !== 12) hour += 12;\n  if (meridian === \"AM\" && hour === 12) hour = 0;\n\n  return `${date}T${String(hour).padStart(2, \"0\")}:${String(minute).padStart(2, \"0\")}:00+08:00`;\n}\n\nreturn [{\n  json: {\n    ...$json,\n    Rescheduled_starttime: toISO($json.safe_arguments.Rescheduled_starttime),\n    Rescheduled_endtime: toISO($json.safe_arguments.Rescheduled_endtime),\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2272,
+        944
+      ],
+      "id": "b8365a77-f19f-499f-8138-fc7bf86f4f55",
+      "name": "Convert DateTime to ISO 8601 (update slots)"
     }
   ],
   "connections": {
@@ -2588,7 +2626,7 @@
       "main": [
         [
           {
-            "node": "Check for availability",
+            "node": "Convert DateTime to ISO 8601 (get slots)",
             "type": "main",
             "index": 0
           }
@@ -2599,7 +2637,7 @@
       "main": [
         [
           {
-            "node": "Create an event",
+            "node": "Convert DateTime to ISO 8601 (book slots)",
             "type": "main",
             "index": 0
           }
@@ -2738,7 +2776,7 @@
       "main": [
         [
           {
-            "node": "Find primary appointment",
+            "node": "Convert DateTime to ISO 8601 (update slots)",
             "type": "main",
             "index": 0
           }
@@ -2966,11 +3004,44 @@
           }
         ]
       ]
+    },
+    "Convert DateTime to ISO 8601 (get slots)": {
+      "main": [
+        [
+          {
+            "node": "Check for availability",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert DateTime to ISO 8601 (book slots)": {
+      "main": [
+        [
+          {
+            "node": "Create an event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert DateTime to ISO 8601 (update slots)": {
+      "main": [
+        [
+          {
+            "node": "Find primary appointment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": " "
+    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
   }
 }
