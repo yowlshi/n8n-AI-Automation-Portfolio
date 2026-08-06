@@ -12,10 +12,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        6928,
-        1488
+        912,
+        256
       ],
-      "id": "eadb5554-c1dd-41d0-ace0-7dc4bd50fac5",
+      "id": "717234ab-7340-4fdb-b7ca-02c8dd51a583",
       "name": "Facebook Chat AI Agent"
     },
     {
@@ -23,17 +23,17 @@
         "model": "openai/gpt-4o-mini",
         "options": {}
       },
-      "id": "9aa75083-2955-4e6c-867d-e1b17684af8d",
+      "id": "9bcc4f3f-b527-426f-b341-e68cc9038a9c",
       "name": "GPT-4o mini (Facebook Chat)",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        6832,
-        1696
+        816,
+        464
       ],
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -46,10 +46,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        6976,
-        1696
+        960,
+        464
       ],
-      "id": "0d788752-450a-41a0-bd4d-949fcb1b89e2",
+      "id": "49f0cb56-d52e-4f2e-97af-0f5f6f40c198",
       "name": "Simple Memory"
     },
     {
@@ -88,49 +88,48 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        6400,
-        1328
+        384,
+        96
       ],
-      "id": "8376b72e-89ed-47ff-82c5-5453d0752bc3",
+      "id": "ca2ff855-a8ff-43b9-97e5-636a75b5ea28",
       "name": "If"
     },
     {
       "parameters": {
-        "authentication": "serviceAccount",
         "operation": "get",
-        "documentURL": "https://docs.google.com/document/d/1NoGgVwfhp4sdjxRckzioQVEXEXXaN9LIDgQ9ltnw7j0/edit?usp=sharing"
+        "documentURL": "https://docs.google.com/document/d/YOUR_DOCUMENT"
       },
       "type": "n8n-nodes-base.googleDocs",
       "typeVersion": 2,
       "position": [
-        6656,
-        1488
+        640,
+        256
       ],
-      "id": "183c1776-da80-430b-8c20-617e7cc39247",
+      "id": "aec67b95-c439-417c-a669-c6caa3311a11",
       "name": "ANGELO AUTOMATES Course & Service Agent",
       "credentials": {
-        "googleApi": {
-          "id": "hLNpJcu96r8jqnJy",
-          "name": "Google Service Account account"
+        "googleDocsOAuth2Api": {
+          "id": "REDACTED",
+          "name": "Google Docs account"
         }
       }
     },
     {
       "parameters": {
         "multipleMethods": true,
-        "path": "f1595664-a9c7-483f-8f9b-cd2153f11704",
+        "path": "REDACTED",
         "responseMode": "responseNode",
         "options": {}
       },
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        6128,
-        1392
+        112,
+        160
       ],
-      "id": "e71bf19d-be90-450f-aa55-6c34425fed30",
+      "id": "e62e9c75-bfd5-417c-82da-9c52d7e2b60a",
       "name": "Webhook (Facebook)",
-      "webhookId": "f1595664-a9c7-483f-8f9b-cd2153f11704"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -141,10 +140,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        6656,
-        1312
+        640,
+        80
       ],
-      "id": "a62d9f2f-ff43-4f6c-adb2-d9e1100c3307",
+      "id": "89ae7984-c349-4f7e-911d-da6e7e8d3a88",
       "name": "Respond to Webhook (Facebook)"
     },
     {
@@ -158,7 +157,7 @@
           },
           "conditions": [
             {
-              "id": "f0691f57-143a-4993-b14f-b102e96d7aeb",
+              "id": "REDACTED",
               "leftValue": "={{ $json.body.entry[0].messaging[0].message.text }}",
               "rightValue": "",
               "operator": {
@@ -175,10 +174,10 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.3,
       "position": [
-        6400,
-        1488
+        384,
+        256
       ],
-      "id": "c94f82c0-f621-4b57-b094-29f99c3d7f89",
+      "id": "91177168-812c-4676-b09d-1c9262e19dcc",
       "name": "Filter (if text contains a message)"
     },
     {
@@ -190,7 +189,7 @@
           "parameters": [
             {
               "name": "access_token",
-              "value": "EAAVPOjA1ggcBRZCPU0WiGYkkjVWnZAbp0v51PuqjKpOqYxAUmXyEq868ujTm5zCpzizhWi7U2lcTbJ0v5cUfUnBl0e4SQJBWkj9AsGLZBqTs8S2L1bQ4uZBbxAOMJ4t2jlQVcuTmxB2z5JBjuRLprtsxydBLIhc7JiZCrkPJeyoysUAQZBpO3iZCzVUeqlHkpPwoobYCEYyw3AtuCluxPkeDwZDZD"
+              "value": "YOUR_ACCESS_TOKEN"
             }
           ]
         },
@@ -202,10 +201,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        7328,
-        1488
+        1312,
+        256
       ],
-      "id": "bad3c01b-7526-496a-8d3c-a113c60589ba",
+      "id": "1194ae55-6d39-43c1-8f97-da5231b2bdbb",
       "name": "HTTP Request (To reply)"
     },
     {
@@ -217,11 +216,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        6016,
-        1232
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "40c2aaaa-59d6-4ab6-9293-3df9f85ff74f",
+      "id": "fee25d81-2aa4-4a23-b95f-15e981615b57",
       "name": "Sticky Note6"
     }
   ],
@@ -314,6 +313,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "REDACTED"
   }
 }
