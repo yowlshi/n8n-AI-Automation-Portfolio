@@ -10,15 +10,15 @@
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.4,
       "position": [
-        -64,
-        96
+        -704,
+        192
       ],
-      "id": "9d011f77-5c22-42f0-8d16-907165179f70",
+      "id": "61725325-315d-4ebd-ba9c-59734d26f832",
       "name": "Receive Invoice Image",
       "webhookId": "685611ad-1a51-4efb-a4ae-f7795faaa889",
       "credentials": {
         "telegramApi": {
-          "id": "8muRdoVdlzax9SoG",
+          "id": "5uVAEfIoCSHpKOeP",
           "name": "Telegram account"
         }
       }
@@ -32,15 +32,15 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        144,
-        96
+        -496,
+        192
       ],
-      "id": "156f079c-27c9-4b6d-977b-b20e5ee3b153",
+      "id": "435c4594-4c0a-423a-8448-460c4d74db10",
       "name": "Download the Invoice",
       "webhookId": "252ac54d-9548-4c2a-8eb0-8918b8fcb606",
       "credentials": {
         "telegramApi": {
-          "id": "8muRdoVdlzax9SoG",
+          "id": "5uVAEfIoCSHpKOeP",
           "name": "Telegram account"
         }
       }
@@ -74,10 +74,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        416,
-        0
+        -224,
+        96
       ],
-      "id": "12771f4c-a057-45d2-9c77-29ab92b4bc74",
+      "id": "6ed5a2e0-52de-4882-8b48-3139c8241e43",
       "name": "Analyze Image"
     },
     {
@@ -102,14 +102,14 @@
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
       "position": [
-        432,
-        320
+        -208,
+        416
       ],
-      "id": "aaa51a80-804c-4cae-b4d4-555244ede303",
+      "id": "209977c4-c963-4dca-9d61-9f5a3904bae2",
       "name": "Upload Invoice file image",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "Y7yuEVstZgnCxhvO",
+          "id": "koDBtFSs8Qm5AEX8",
           "name": "Google Drive account"
         }
       }
@@ -123,10 +123,10 @@
       "type": "n8n-nodes-base.merge",
       "typeVersion": 3.2,
       "position": [
-        1296,
-        128
+        656,
+        224
       ],
-      "id": "187aec0d-b412-4322-b62a-e93e628d3476",
+      "id": "a4b83cc7-f213-423d-a82f-5d987e8d5206",
       "name": "Merge"
     },
     {
@@ -138,10 +138,10 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.3,
       "position": [
-        832,
-        48
+        192,
+        144
       ],
-      "id": "f9980d20-c9d4-4ca7-801d-eab9f3e2c722",
+      "id": "0b03cb84-fb35-48f1-a0b4-00370c8efa33",
       "name": "Structured Output Parser"
     },
     {
@@ -152,14 +152,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        912,
-        320
+        272,
+        416
       ],
-      "id": "5dda32a1-ea47-42a8-a5f8-706a50e0b206",
+      "id": "cbcf8337-80a8-47b8-9b44-929cb2b76cdb",
       "name": "OpenAI GPT-4o mini (parser)",
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "ijipWuWtRyNtoHqS",
           "name": "OpenRouter account"
         }
       }
@@ -316,15 +316,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.7,
       "position": [
-        1504,
-        128
+        1632,
+        368
       ],
-      "id": "772e58e3-e213-46c3-b69f-f010d7f4fd9a",
+      "id": "65b2c9e9-5b32-41cd-aeef-132b870c116e",
       "name": "Update AI Invoice Database",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "hLNpJcu96r8jqnJy",
-          "name": "Google Service Account account"
+          "id": "IBpmypy7iZ349eZn",
+          "name": "Google Sheets account"
         }
       }
     },
@@ -340,10 +340,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        640,
-        -96
+        0,
+        0
       ],
-      "id": "252c6132-856a-4e43-a029-442d672a4b7e",
+      "id": "1f918816-e629-420a-bf18-7caad5f9631d",
       "name": "Invoice Extraction AI"
     },
     {
@@ -354,14 +354,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        560,
-        144
+        -80,
+        240
       ],
-      "id": "9925b849-6309-4834-9f57-02ab0e5e66a1",
+      "id": "1dc79efa-029d-4931-b6e6-c24c432b627c",
       "name": "OpenAI GPT-4o mini (Extract Agent)",
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "ijipWuWtRyNtoHqS",
           "name": "OpenRouter account"
         }
       }
@@ -377,10 +377,10 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        1712,
-        128
+        1840,
+        368
       ],
-      "id": "9ae76c0e-e972-43fc-bd2a-fe6dfb7f0077",
+      "id": "69e591fd-d9fc-49fb-86e0-be307e7733a6",
       "name": "Invoice Summary AI"
     },
     {
@@ -391,14 +391,14 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        1712,
-        352
+        1840,
+        592
       ],
-      "id": "0c88fcc0-20f9-494f-994e-65938096ce8e",
+      "id": "3f6c125e-53fb-4990-8f75-27320aec8183",
       "name": "OpenAI GPT-4o mini (Summary Agent)",
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "ijipWuWtRyNtoHqS",
           "name": "OpenRouter account"
         }
       }
@@ -411,10 +411,10 @@
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.4,
       "position": [
-        704,
-        112
+        64,
+        208
       ],
-      "id": "d927af40-3a62-4894-bed9-4fd0036d1664",
+      "id": "f143656c-23dc-4859-a76e-4c672782c427",
       "name": "Window Buffer Memory"
     },
     {
@@ -426,18 +426,140 @@
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
       "position": [
-        2080,
-        128
+        2208,
+        368
       ],
-      "id": "950adac6-b50c-447d-800f-ad6229cd9ed9",
+      "id": "59c13ff6-0ed9-49e5-bdcf-d492f96d43f7",
       "name": "Send Reply with Invoice Details",
       "webhookId": "491afd11-86e4-4f62-a8da-7e7d13ffdf74",
       "credentials": {
         "telegramApi": {
-          "id": "8muRdoVdlzax9SoG",
+          "id": "5uVAEfIoCSHpKOeP",
           "name": "Telegram account"
         }
       }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0",
+          "mode": "list",
+          "cachedResultName": "AI Invoice Database",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Invoice Number",
+              "lookupValue": "={{ $json.output.invoice_number }}"
+            },
+            {
+              "lookupColumn": "Vendor Name",
+              "lookupValue": "={{ $json.output.vendor_name }}"
+            },
+            {
+              "lookupColumn": "Invoice Date",
+              "lookupValue": "={{ $json.output.invoice_date }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        880,
+        224
+      ],
+      "id": "9d16f4f7-9d60-4ee7-8a73-a9462aa7e086",
+      "name": "Check Duplicate Invoice",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IBpmypy7iZ349eZn",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "8c5fae2a-6e1d-4f29-86fb-adb902f0c7fd",
+              "leftValue": "={{ $json.row_number ?? 0 }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1104,
+        224
+      ],
+      "id": "bdc61b1a-06b9-47e6-8516-6d8ea849c8cf",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Receive Invoice Image').item.json.message.chat.id }}",
+        "text": "⚠️ Duplicate invoice detected. This invoice has already been recorded in the database, so no new entry was created.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1328,
+        160
+      ],
+      "id": "712f402b-fb63-4cc1-8688-532ae1fe54fd",
+      "name": "Send Invoice already exists",
+      "webhookId": "5101733b-a0da-4ff6-a691-38d77dd555fb",
+      "credentials": {
+        "telegramApi": {
+          "id": "5uVAEfIoCSHpKOeP",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        1328,
+        368
+      ],
+      "id": "2573d91d-5191-4110-b024-46397465c019",
+      "name": "Merge IF"
     }
   ],
   "connections": {
@@ -494,9 +616,14 @@
       "main": [
         [
           {
-            "node": "Update AI Invoice Database",
+            "node": "Check Duplicate Invoice",
             "type": "main",
             "index": 0
+          },
+          {
+            "node": "Merge IF",
+            "type": "main",
+            "index": 1
           }
         ]
       ]
@@ -588,57 +715,51 @@
           }
         ]
       ]
+    },
+    "Check Duplicate Invoice": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Send Invoice already exists",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Merge IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge IF": {
+      "main": [
+        [
+          {
+            "node": "Update AI Invoice Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
-  "pinData": {
-    "Receive Invoice Image": [
-      {
-        "update_id": 299081704,
-        "message": {
-          "message_id": 4,
-          "from": {
-            "id": 1924206240,
-            "is_bot": false,
-            "first_name": "Yowlshi",
-            "last_name": "</>",
-            "username": "Yowliii",
-            "language_code": "en"
-          },
-          "chat": {
-            "id": 1924206240,
-            "first_name": "Yowlshi",
-            "last_name": "</>",
-            "username": "Yowliii",
-            "type": "private"
-          },
-          "date": 1783744355,
-          "document": {
-            "file_name": "Messenger_creation_F82674CD-D21C-44E8-8CE2-49C21EBBEE2A.jpeg",
-            "mime_type": "image/jpeg",
-            "thumbnail": {
-              "file_id": "AAMCBQADGQEAAwRqUcdjSUUSmxz5jIc3O1SAmE4eOQACViMAApI0iVYoAYjERYAGMQEAB20AAzwE",
-              "file_unique_id": "AQADViMAApI0iVZy",
-              "file_size": 18679,
-              "width": 256,
-              "height": 320
-            },
-            "thumb": {
-              "file_id": "AAMCBQADGQEAAwRqUcdjSUUSmxz5jIc3O1SAmE4eOQACViMAApI0iVYoAYjERYAGMQEAB20AAzwE",
-              "file_unique_id": "AQADViMAApI0iVZy",
-              "file_size": 18679,
-              "width": 256,
-              "height": 320
-            },
-            "file_id": "BQACAgUAAxkBAAMEalHHY0lFEpsc-YyHNztUgJhOHjkAAlYjAAKSNIlWKAGIxEWABjE8BA",
-            "file_unique_id": "AgADViMAApI0iVY",
-            "file_size": 165075
-          }
-        }
-      }
-    ]
-  },
+  "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "77a208ff5607874c68d16a0f8b17b1f761e899c7e2cd813540f415fb8d3257e9"
   }
 }
