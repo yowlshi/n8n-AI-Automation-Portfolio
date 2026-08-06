@@ -10,12 +10,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        1456,
-        -384
+        112,
+        208
       ],
-      "id": "3909c65f-e9c1-42ae-a254-e265ae729581",
+      "id": "7f15c203-1a25-4b89-819d-14140468ddf5",
       "name": "Get_slots",
-      "webhookId": "bdcee7f9-9112-4e81-a019-4f55b55b0df8"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -26,21 +26,21 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        1488,
-        2336
+        144,
+        2928
       ],
-      "id": "cbdec208-b17c-4702-b488-2c9e5dc9c1ec",
+      "id": "802041bc-8342-4414-87b2-0da6f50fbbbe",
       "name": "Call_results",
-      "webhookId": "bdcee7f9-9112-4e81-a019-4f55b55b0df8"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
         "resource": "calendar",
         "calendar": {
           "__rl": true,
-          "value": "angelo.automates@gmail.com",
+          "value": "your@gmail.com",
           "mode": "list",
-          "cachedResultName": "angelo.automates@gmail.com"
+          "cachedResultName": "your@gmail.com"
         },
         "timeMin": "={{ $json.starttime.toDateTime() }}",
         "timeMax": "={{ $json.endtime.toDateTime()|| $now.plus( 1, 'hour').toISO() }}",
@@ -49,14 +49,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2288,
-        -384
+        944,
+        208
       ],
-      "id": "ec77a237-0847-4eb2-a675-406e0780a997",
+      "id": "e7aae404-99a6-4700-a36e-216f40fcc5b0",
       "name": "Check for availability",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "Nvp0elOjwelyE6Iz",
+          "id": "REDACTED",
           "name": "Google Calendar account"
         }
       }
@@ -70,10 +70,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2704,
-        -480
+        1360,
+        112
       ],
-      "id": "7557daa4-693e-4398-987a-292153945a23",
+      "id": "1e7fd279-99e9-4897-af67-390902d2eeea",
       "name": "Respond Availability"
     },
     {
@@ -104,10 +104,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2496,
-        -384
+        1152,
+        208
       ],
-      "id": "2444858b-58ba-4ba7-ae40-1ccea233486f",
+      "id": "9815d9ad-1efb-4585-b104-f5ea06e6172f",
       "name": "If availability is true or no"
     },
     {
@@ -115,9 +115,9 @@
         "operation": "getAll",
         "calendar": {
           "__rl": true,
-          "value": "angelo.automates@gmail.com",
+          "value": "your@gmail.com",
           "mode": "list",
-          "cachedResultName": "angelo.automates@gmail.com"
+          "cachedResultName": "your@gmail.com"
         },
         "returnAll": true,
         "timeMin": "={{ $now.toISO() }}",
@@ -129,15 +129,15 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2704,
-        -288
+        1360,
+        304
       ],
-      "id": "967ba574-a8ef-47f2-bec6-5c652a9626b8",
+      "id": "ec51b9de-cd8c-4797-9443-8e04017e846d",
       "name": "Get all events",
       "alwaysOutputData": true,
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "Nvp0elOjwelyE6Iz",
+          "id": "REDACTED",
           "name": "Google Calendar account"
         }
       }
@@ -179,10 +179,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2912,
-        -288
+        1568,
+        304
       ],
-      "id": "0916aef1-dff5-4913-893c-c2b255cfde28",
+      "id": "43c287f7-8fc0-4eeb-9a4d-d37a5d813d85",
       "name": "Extract Event Details"
     },
     {
@@ -199,10 +199,10 @@
       "type": "n8n-nodes-base.sort",
       "typeVersion": 1,
       "position": [
-        3120,
-        -288
+        1776,
+        304
       ],
-      "id": "f1169353-597e-4946-a8a4-ba426cc64261",
+      "id": "780fe406-58b9-43b2-b1bc-0772513f611b",
       "name": "Sort"
     },
     {
@@ -216,10 +216,10 @@
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
       "position": [
-        3328,
-        -288
+        1984,
+        304
       ],
-      "id": "c4ac0528-ab12-4abb-b4ee-499c7471c17c",
+      "id": "9b2d7ddd-1c80-463f-858b-b9c6d36b9904",
       "name": "Formatted Response"
     },
     {
@@ -229,10 +229,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        3536,
-        -288
+        2192,
+        304
       ],
-      "id": "f9b50946-cba9-4463-ab73-3e0fa9ab268a",
+      "id": "a793991d-c4f3-41a3-9acc-03940db748a0",
       "name": "Available start time & ranges"
     },
     {
@@ -245,12 +245,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        1456,
-        288
+        112,
+        880
       ],
-      "id": "f9f6ae20-79e6-42cf-a3f5-2cfa0f8c742f",
+      "id": "7eef666c-1461-4f23-b746-49cfbe151cb9",
       "name": "Book_slots",
-      "webhookId": "1fdd5cad-9d06-4683-96c4-58da0ac5f867"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -259,10 +259,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1648,
-        288
+        304,
+        880
       ],
-      "id": "954c4f83-5776-43b5-99d4-8d070c8e3501",
+      "id": "3a24e302-89e4-4b64-a1ca-f004e9f3b83e",
       "name": "safe_arguments: extractedArgs(Book_slots)"
     },
     {
@@ -336,10 +336,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1840,
-        288
+        496,
+        880
       ],
-      "id": "d6d9b75a-d053-4fa1-b77b-9902af441193",
+      "id": "04d0a382-a72f-4fba-bc08-5332a68f65ab",
       "name": "Input Arguments (Book_slots)"
     },
     {
@@ -349,10 +349,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1664,
-        -384
+        320,
+        208
       ],
-      "id": "c56ffd7a-981a-4e32-b55b-223efe3fab04",
+      "id": "5c5cfc03-b58d-42d9-8401-041d6cf3ce35",
       "name": "safe_arguments: extractedArgs (Get_slots)"
     },
     {
@@ -396,10 +396,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1872,
-        -384
+        528,
+        208
       ],
-      "id": "0d38cda1-c1a3-421e-87b0-41acaae5b3cd",
+      "id": "dd9cf1e9-4d36-402a-b939-b894690aa710",
       "name": "Input Arguments (Get_slots)"
     },
     {
@@ -410,10 +410,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2240,
-        256
+        896,
+        848
       ],
-      "id": "950286a9-32d8-44e2-b8c3-f154731ab357",
+      "id": "268ca1c6-71d2-46d6-9d3a-855dc0472106",
       "name": "Ecape JSON"
     },
     {
@@ -489,10 +489,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2912,
-        176
+        1568,
+        768
       ],
-      "id": "1b2ba9f0-7840-4dee-b60b-03ae5fc6dc43",
+      "id": "8cdf31b7-90de-45d9-b5af-e09749d60ccd",
       "name": "Booking Payload"
     },
     {
@@ -518,10 +518,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3120,
-        176
+        1776,
+        768
       ],
-      "id": "b8c4094b-2921-4dfc-a77c-d99bfee80a8b",
+      "id": "46045efb-612d-490f-b2a4-927118f828d2",
       "name": "Success response"
     },
     {
@@ -533,10 +533,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3328,
-        272
+        1984,
+        864
       ],
-      "id": "ff3e1495-d79e-412a-8c24-14b13341f25d",
+      "id": "f5d6f95a-9194-4cd8-9549-e433a4a2a4f5",
       "name": "Respond to book_slots"
     },
     {
@@ -566,10 +566,10 @@
       "type": "n8n-nodes-base.filter",
       "typeVersion": 2.3,
       "position": [
-        3536,
-        272
+        2192,
+        864
       ],
-      "id": "fba4e68e-5123-41ac-9f4b-37f7a5137152",
+      "id": "2376c64e-2c6d-42fe-a590-85a7d8779982",
       "name": "check if booking is confirmed"
     },
     {
@@ -667,10 +667,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3744,
-        272
+        2400,
+        864
       ],
-      "id": "d127d59d-fe7f-4361-b94f-5bb34eda765b",
+      "id": "cd1b4ff7-cf35-469e-9857-024c57e0a3ac",
       "name": "Details to be saved to Airtable"
     },
     {
@@ -678,17 +678,17 @@
         "operation": "create",
         "base": {
           "__rl": true,
-          "value": "appCAFvIdCFdQLa1L",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tblF8LF9lmkHMbk7v",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -850,14 +850,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        3952,
-        272
+        2608,
+        864
       ],
-      "id": "a29fade4-a449-4a42-a3fc-f35e463c9741",
+      "id": "5b578527-34a0-4da8-8041-e805d8d17d5f",
       "name": "Record the details",
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -870,10 +870,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2912,
-        400
+        1568,
+        992
       ],
-      "id": "2cc5e16c-26a3-4a29-bc8a-a84882fe2bb7",
+      "id": "db9b66f9-09b1-4488-9c04-b795b6350348",
       "name": "Send error message"
     },
     {
@@ -899,10 +899,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3120,
-        400
+        1776,
+        992
       ],
-      "id": "0c62f7e8-8149-40ce-9409-29fdc55b2545",
+      "id": "d2201e94-92da-4323-b1cf-3ff625e693ac",
       "name": "Error response"
     },
     {
@@ -915,12 +915,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        1456,
-        1024
+        112,
+        1616
       ],
-      "id": "5f8c3805-b385-4c36-b5eb-58f7ef5f10ff",
+      "id": "f983a84c-ffd4-4e42-ae86-6f88c6b68070",
       "name": "Update_slots",
-      "webhookId": "a9a6f8d8-6d10-4dc3-9bc2-19ab7120a503"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -929,10 +929,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1648,
-        1024
+        304,
+        1616
       ],
-      "id": "f440c095-bc38-4ae5-be9e-e31e401b5a09",
+      "id": "3b01f4fe-a84f-4fe5-a268-0ea2082150ea",
       "name": "safe_arguments: extractedArgs(Update_slots)"
     },
     {
@@ -1000,10 +1000,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1840,
-        1024
+        496,
+        1616
       ],
-      "id": "8393f4c9-601e-43e3-a3ff-8ce8554d4f69",
+      "id": "78448282-5dc4-4470-b9fb-379a66272949",
       "name": "Input Arguments (Update_slots)"
     },
     {
@@ -1034,10 +1034,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2048,
-        288
+        704,
+        880
       ],
-      "id": "61eeb3c6-15b7-4b11-b631-5e8fedc1f29f",
+      "id": "5732319e-b37e-446b-8394-8b7b6808f97d",
       "name": "to verify (book_slots)"
     },
     {
@@ -1098,10 +1098,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2048,
-        1024
+        704,
+        1616
       ],
-      "id": "022d70e4-f66f-497e-92ba-ef9247b6aeaa",
+      "id": "16184577-2cb2-4b1d-991c-8ed1b7911d0f",
       "name": "to verify (update_slots)"
     },
     {
@@ -1109,17 +1109,17 @@
         "operation": "search",
         "base": {
           "__rl": true,
-          "value": "appCAFvIdCFdQLa1L",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tblF8LF9lmkHMbk7v",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "filterByFormula": "={Phone Number} = (\"{{ $json.customer_number}}\")",
         "options": {
@@ -1134,14 +1134,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2480,
-        944
+        1136,
+        1536
       ],
-      "id": "366fa648-f65c-41e2-a93e-df2daae417a2",
+      "id": "5a08eec1-e98f-4695-bf89-dbcdbdfdb43d",
       "name": "Find primary appointment",
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1151,9 +1151,9 @@
         "operation": "update",
         "calendar": {
           "__rl": true,
-          "value": "angelo.automates@gmail.com",
+          "value": "your@gmail.com",
           "mode": "list",
-          "cachedResultName": "angelo.automates@gmail.com"
+          "cachedResultName": "your@gmail.com"
         },
         "eventId": "={{ $json.fields.eventId }}",
         "updateFields": {
@@ -1165,14 +1165,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2704,
-        944
+        1360,
+        1536
       ],
-      "id": "d46fcf70-eca3-457a-af07-40ea2f7bef51",
+      "id": "1669b801-0071-4142-baeb-12234859dfd8",
       "name": "Update an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "Nvp0elOjwelyE6Iz",
+          "id": "REDACTED",
           "name": "Google Calendar account"
         }
       },
@@ -1187,10 +1187,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3264,
-        1040
+        1920,
+        1632
       ],
-      "id": "6782697c-c372-4d4e-a9ff-2dc9f78cb5c1",
+      "id": "4a658c2d-a1a0-4d61-805a-f0d72e45151e",
       "name": "Respond to Webhook (Update_slots)"
     },
     {
@@ -1216,10 +1216,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        3056,
-        1040
+        1712,
+        1632
       ],
-      "id": "048ebc41-029d-412a-b4fe-4f22e7ad4498",
+      "id": "81ad5531-db82-4534-a456-5940cbc39611",
       "name": "Response error or status & call ID"
     },
     {
@@ -1231,10 +1231,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2416,
-        480
+        1072,
+        1072
       ],
-      "id": "43457af9-30fe-4f57-8681-e5bdc39b4a92",
+      "id": "3f2e3e79-fca7-47e2-99f6-30dc01fc90e2",
       "name": "Respond with error message (book_slots)"
     },
     {
@@ -1244,10 +1244,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2704,
-        1136
+        1360,
+        1728
       ],
-      "id": "35d550ca-2d72-4c1f-ba63-1c75c37dd4be",
+      "id": "7b504ac6-2db9-46e3-bae6-9d62a32d914f",
       "name": "Respond with error message (update_slots)"
     },
     {
@@ -1259,10 +1259,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3744,
-        -288
+        2400,
+        304
       ],
-      "id": "41561526-1c45-44e4-981c-03334e0592fb",
+      "id": "0bb4a668-4451-4ece-abed-dc891c0412b5",
       "name": "Respond to Webhook (Get_slots)"
     },
     {
@@ -1275,12 +1275,12 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2.1,
       "position": [
-        1488,
-        1728
+        144,
+        2320
       ],
-      "id": "eabd6b48-fe52-4093-9282-2f6161d05690",
+      "id": "bb16af3c-0113-4c23-87ad-a3ca1276d96e",
       "name": "Cancel_slots",
-      "webhookId": "12d6968b-6185-4068-b28c-513949f16d8e"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -1289,10 +1289,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        1680,
-        1728
+        336,
+        2320
       ],
-      "id": "7edb4dba-54bb-4f99-95c9-a90e005c816e",
+      "id": "fcb460e0-91d9-4306-8134-2a50f84e6e70",
       "name": "safe_arguments: extractedArgs(Cancel_slots)"
     },
     {
@@ -1348,10 +1348,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1872,
-        1728
+        528,
+        2320
       ],
-      "id": "2c752b60-aa61-4e6e-bce1-ce1972203121",
+      "id": "9662d6e7-1588-4668-8dcb-8afd4424f4c4",
       "name": "Input Arguments (Cancel_slots)"
     },
     {
@@ -1402,10 +1402,10 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        2080,
-        1728
+        736,
+        2320
       ],
-      "id": "88dd9f3a-225d-413b-984f-dc7046819a18",
+      "id": "8590e662-ef88-4e89-8db9-a132ebfc5658",
       "name": "to verify (cancel_slots)"
     },
     {
@@ -1413,17 +1413,17 @@
         "operation": "search",
         "base": {
           "__rl": true,
-          "value": "appCAFvIdCFdQLa1L",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tblF8LF9lmkHMbk7v",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "filterByFormula": "={Phone Number} = (\"{{ $json.customer_number}}\")",
         "options": {
@@ -1438,15 +1438,15 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2288,
-        1632
+        944,
+        2224
       ],
-      "id": "f6198683-b63d-4501-a2f6-fa12914bc9de",
+      "id": "aed4cad8-8e23-4877-968e-e4b918e285a9",
       "name": "Find appointment",
       "alwaysOutputData": true,
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1456,9 +1456,9 @@
         "operation": "delete",
         "calendar": {
           "__rl": true,
-          "value": "angelo.automates@gmail.com",
+          "value": "your@gmail.com",
           "mode": "list",
-          "cachedResultName": "angelo.automates@gmail.com"
+          "cachedResultName": "your@gmail.com"
         },
         "eventId": "={{ $json.fields.eventId }}",
         "options": {
@@ -1468,14 +1468,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2496,
-        1632
+        1152,
+        2224
       ],
-      "id": "c9b00850-d0c8-4c85-9479-144959b9f971",
+      "id": "24172d49-bdf8-48a9-b5b7-fe2c2b27bcbb",
       "name": "Delete an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "Nvp0elOjwelyE6Iz",
+          "id": "REDACTED",
           "name": "Google Calendar account"
         }
       },
@@ -1489,14 +1489,14 @@
           "value": "appCAFvIdCFdQLa1L",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tblF8LF9lmkHMbk7v",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1661,14 +1661,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2896,
-        848
+        1552,
+        1440
       ],
-      "id": "04aafa28-21bc-419b-babf-a3ac52ea8517",
+      "id": "a9d64ed8-3e11-40af-8bcb-18dc4a6b082b",
       "name": "Update record (rescheduled)",
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1678,17 +1678,17 @@
         "operation": "update",
         "base": {
           "__rl": true,
-          "value": "appCAFvIdCFdQLa1L",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tblF8LF9lmkHMbk7v",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Appointments",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tblF8LF9lmkHMbk7v"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -1851,14 +1851,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        2704,
-        1504
+        1360,
+        2096
       ],
-      "id": "8dfbae31-1f8f-4d52-a8fe-ca8fd9023569",
+      "id": "b60cf7bd-b55a-4647-9f00-87195ed06379",
       "name": "Update record (canceled)",
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -1886,10 +1886,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2896,
-        1632
+        1552,
+        2224
       ],
-      "id": "67a820e3-e46c-479e-aa0f-d2ecaf48d25e",
+      "id": "10cc7c38-ccb5-4ab8-847d-a786c8d0f8d3",
       "name": "Call Id & Response"
     },
     {
@@ -1901,10 +1901,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        3088,
-        1632
+        1744,
+        2224
       ],
-      "id": "72d3f58e-239b-492b-9bb8-de4625b23771",
+      "id": "e9f6d7a9-bf5d-443e-be9d-deeeac42593e",
       "name": "Respond to Webhook (Cancel_slots)"
     },
     {
@@ -1930,10 +1930,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2208,
-        480
+        864,
+        1072
       ],
-      "id": "8a2ad7e1-52f2-4af7-b868-7653ca32eff6",
+      "id": "a4fe5cb0-7a46-47c0-941d-ba2d48d07572",
       "name": "Build Error Response Payload (book_slots)"
     },
     {
@@ -1959,10 +1959,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2288,
-        1136
+        944,
+        1728
       ],
-      "id": "c1ea1192-8823-4851-a11b-e822264c3643",
+      "id": "4575310b-20e1-4a29-b5b7-33bfdde493f3",
       "name": "Error Response Payload (update_slots)"
     },
     {
@@ -1988,10 +1988,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2288,
-        1920
+        944,
+        2512
       ],
-      "id": "cf7749ee-f876-409e-818b-7be2758e0529",
+      "id": "bf3b86ac-2efb-40e4-899e-1b964426973c",
       "name": "Error Response Payload (cancel_slots)"
     },
     {
@@ -2001,10 +2001,10 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.5,
       "position": [
-        2496,
-        1920
+        1152,
+        2512
       ],
-      "id": "2d25f5d6-fbfd-4092-b62b-9329387e8030",
+      "id": "731545cf-6254-4e83-a777-4be04762b2f8",
       "name": "Respond with error message (cancel_slots)"
     },
     {
@@ -2108,10 +2108,10 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1696,
-        2336
+        352,
+        2928
       ],
-      "id": "4d21eab3-57eb-41fd-86b8-38889e4229d1",
+      "id": "f49bff4d-c9b5-46a0-89cc-558f12be8360",
       "name": "Input Arguments (Call_results)"
     },
     {
@@ -2119,17 +2119,17 @@
         "operation": "upsert",
         "base": {
           "__rl": true,
-          "value": "appCAFvIdCFdQLa1L",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Appointment Setter Build",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "table": {
           "__rl": true,
-          "value": "tbl1b6vMhq9IT9JEZ",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Call Recording",
-          "cachedResultUrl": "https://airtable.com/appCAFvIdCFdQLa1L/tbl1b6vMhq9IT9JEZ"
+          "cachedResultUrl": "https://airtable.com/yourairtable"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -2298,14 +2298,14 @@
       "type": "n8n-nodes-base.airtable",
       "typeVersion": 2.2,
       "position": [
-        1904,
-        2336
+        560,
+        2928
       ],
-      "id": "2ea9b84b-ae25-4519-847d-2a50d1d74420",
+      "id": "5a7475e0-51b9-4b87-ad44-e962c89cef81",
       "name": "Create or update a record",
       "credentials": {
         "airtableTokenApi": {
-          "id": "fgLVJj4RMYLzuCyL",
+          "id": "REDACTED",
           "name": "Airtable Personal Access Token account"
         }
       }
@@ -2319,11 +2319,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1344,
-        -592
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "5d1240f2-ce40-46bb-a84b-8ba8c7955faa",
+      "id": "5ff8a7c7-fbb8-4c3c-8073-41944586ea84",
       "name": "Sticky Note6"
     },
     {
@@ -2335,11 +2335,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1344,
-        144
+        0,
+        736
       ],
       "typeVersion": 1,
-      "id": "b1e62cdf-766c-43a7-a51d-4a8379f43065",
+      "id": "66068730-1b86-4690-b42a-f84ead146b30",
       "name": "Sticky Note"
     },
     {
@@ -2351,11 +2351,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1344,
-        800
+        0,
+        1392
       ],
       "typeVersion": 1,
-      "id": "905ba4cb-74bd-49f0-b641-47bb1e9b8e8b",
+      "id": "7ce4be3f-be01-4539-9962-fa83a7d6b745",
       "name": "Sticky Note1"
     },
     {
@@ -2367,11 +2367,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1344,
-        1472
+        0,
+        2064
       ],
       "typeVersion": 1,
-      "id": "f98ba575-28f2-4b4c-8300-c59a5933118d",
+      "id": "963c9bd3-41ac-48e6-877d-9ca74a074eb1",
       "name": "Sticky Note2"
     },
     {
@@ -2383,20 +2383,20 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        1376,
-        2208
+        32,
+        2800
       ],
       "typeVersion": 1,
-      "id": "7f10f9aa-faa7-4c17-af9a-9f9eb247b03e",
+      "id": "560b2804-42b8-4fec-bd01-cf3697fbcb33",
       "name": "Sticky Note3"
     },
     {
       "parameters": {
         "calendar": {
           "__rl": true,
-          "value": "angelo.automates@gmail.com",
+          "value": "your@gmail.com",
           "mode": "list",
-          "cachedResultName": "angelo.automates@gmail.com"
+          "cachedResultName": "your@gmail.com"
         },
         "start": "={{ $json.starttime }}",
         "end": "={{ $json.endtime }}",
@@ -2418,14 +2418,14 @@
       "type": "n8n-nodes-base.googleCalendar",
       "typeVersion": 1.3,
       "position": [
-        2656,
-        256
+        1312,
+        848
       ],
-      "id": "5e28385b-b7eb-4655-bb51-00a18fae160f",
+      "id": "755767ef-0883-482e-9f2f-e7713ef40fa4",
       "name": "Create an event",
       "credentials": {
         "googleCalendarOAuth2Api": {
-          "id": "Nvp0elOjwelyE6Iz",
+          "id": "REDACTED",
           "name": "Google Calendar account"
         }
       },
@@ -2438,10 +2438,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2080,
-        -384
+        736,
+        208
       ],
-      "id": "1d5f7205-9d21-44db-8e2b-bcd1c2b3dada",
+      "id": "6bcbf046-26be-46c4-9232-4ef6cffcc045",
       "name": "Convert DateTime to ISO 8601 (get slots)"
     },
     {
@@ -2451,10 +2451,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2448,
-        256
+        1104,
+        848
       ],
-      "id": "cdf8680f-a509-4c0f-8de7-adedf2739a8a",
+      "id": "1f92808d-bb99-49d0-9254-19ca653360b9",
       "name": "Convert DateTime to ISO 8601 (book slots)"
     },
     {
@@ -2464,10 +2464,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        2272,
-        944
+        928,
+        1536
       ],
-      "id": "b8365a77-f19f-499f-8138-fc7bf86f4f55",
+      "id": "1b76aa94-a8d4-4ec8-9962-5636b725f258",
       "name": "Convert DateTime to ISO 8601 (update slots)"
     }
   ],
@@ -3042,6 +3042,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "77a208ff5607874c68d16a0f8b17b1f761e899c7e2cd813540f415fb8d3257e9"
   }
 }
