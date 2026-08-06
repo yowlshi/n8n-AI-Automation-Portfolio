@@ -4,55 +4,53 @@
       "parameters": {
         "options": {}
       },
-      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "id": "28a60f8e-d9f9-4cdb-badb-875ad0e468bd",
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        3984,
-        688
+        32,
+        80
       ],
-      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
-        "authentication": "serviceAccount",
         "operation": "get",
-        "documentURL": "https://docs.google.com/document/d/1sWCU8Qy2MIihCmJhf8MnOA-PaSMRToIDcKxKLXWc-M8/edit?usp=sharing"
+        "documentURL": "https://docs.google.com/document/d/REDACTED/edit?usp=sharing"
       },
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        4224,
-        880
+        272,
+        272
       ],
-      "id": "3f49071f-5fba-4689-aa21-68a45deb6e75",
+      "id": "337a64e5-85f4-40bb-ad0b-de3c3dceeeb1",
       "name": "The Complete Beginner's Guide to AI Automation for Small Businesses",
       "credentials": {
-        "googleApi": {
-          "id": "hLNpJcu96r8jqnJy",
-          "name": "Google Service Account account"
+        "googleDocsOAuth2Api": {
+          "id": "REDACTED",
+          "name": "Google Docs account"
         }
       }
     },
     {
       "parameters": {
-        "authentication": "serviceAccount",
         "operation": "get",
-        "documentURL": "https://docs.google.com/document/d/1zVky29yOeIKvTN83rewMxx9uhbiEGQItQsWoQWMVZ2w/edit?usp=sharing"
+        "documentURL": "https://docs.google.com/document/d/REDACTED/edit?usp=sharing"
       },
       "type": "n8n-nodes-base.googleDocsTool",
       "typeVersion": 2,
       "position": [
-        4400,
-        880
+        448,
+        272
       ],
-      "id": "f5c28aa8-0b65-4edf-ab8f-93c648ea8a84",
+      "id": "1282622a-9aec-4276-85f2-de7b0ccea0c1",
       "name": "From Fresh Graduate to AI Automation Specialist: A Practical Career Roadmap",
       "credentials": {
-        "googleApi": {
-          "id": "hLNpJcu96r8jqnJy",
-          "name": "Google Service Account account"
+        "googleDocsOAuth2Api": {
+          "id": "REDACTED",
+          "name": "Google Docs account"
         }
       }
     },
@@ -65,24 +63,24 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        3952,
-        608
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "c0c3ac99-8b8f-44d2-a6b5-49d18c0a92c5",
+      "id": "4f78a084-80fa-4cdd-ad06-2d6e99a6b746",
       "name": "Sticky Note3"
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "aed62a79-bf1e-4b24-8018-809830b0e184",
+      "id": "a2e5d452-7473-4d38-8e04-fd37172e63f7",
       "name": "Full Context Agent (Tool)",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        4160,
-        688
+        208,
+        80
       ]
     },
     {
@@ -90,17 +88,17 @@
         "model": "openai/gpt-4o-mini",
         "options": {}
       },
-      "id": "b8fd6dad-7047-47c4-a268-48bf401ab391",
+      "id": "1c42aca5-630a-499a-8354-a933fc897641",
       "name": "GPT-4o mini (Full Context - Tool)",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        4064,
-        880
+        112,
+        272
       ],
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -155,6 +153,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "77a208ff5607874c68d16a0f8b17b1f761e899c7e2cd813540f415fb8d3257e9"
   }
 }
