@@ -4,15 +4,15 @@
       "parameters": {
         "options": {}
       },
-      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "id": "fd3bbd44-4500-45bc-9ceb-2306315fc8b0",
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        2880,
-        32
+        128,
+        128
       ],
-      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
@@ -20,13 +20,13 @@
           "systemMessage": "=You are a Sales Analytics Assistant.\n\nYou have access to a PostgreSQL database tool and a Think tool.\n\nIMPORTANT:\n\nWhen a user asks any question about:\n\n- sales\n- revenue\n- products\n- regions\n- transactions\n- payment methods\n- categories\n\nyou MUST use the database tool.\n\nNever answer from assumptions.\n\nNever provide example SQL unless the user explicitly asks for SQL.\n\nWorkflow:\n\n1. Understand the user's question.\n2. Generate a SQL query.\n3. Execute the query using the Online Sales database tool.\n4. Review the returned data.\n5. If calculations, rankings, percentages, trends, or business insights are required, use the Think tool.\n6. Provide the final answer.\n\nDatabase schema:\n\nTable:\npublic.\"Online_Sales_Data\"\n\nColumns:\n\n\"Transaction ID\"\n\"Date\"\n\"Product Category\"\n\"Product Name\"\n\"Units Sold\"\n\"Unit Price\"\n\"Total Revenue\"\n\"Region\"\n\"Payment Method\"\n\nAlways use exact column names.\n\nAlways use actual database results."
         }
       },
-      "id": "956fd38a-f890-46ea-b090-488e8d7fe2ab",
+      "id": "d8f457bd-9dc8-4ea6-9808-869f6c9e1f2e",
       "name": "SQL Sales Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        3136,
-        0
+        384,
+        96
       ]
     },
     {
@@ -34,17 +34,17 @@
         "model": "openai/gpt-4o-mini",
         "options": {}
       },
-      "id": "c2cf0195-9447-4f4e-ad12-30f5f7b87344",
+      "id": "d059a142-6f71-40c7-a853-d3e5568aa123",
       "name": "GPT-4o mini (SQL Sales)",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        3072,
-        192
+        320,
+        288
       ],
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -56,10 +56,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolThink",
       "typeVersion": 1.1,
       "position": [
-        3488,
-        192
+        736,
+        288
       ],
-      "id": "21ab1e05-f55f-43c0-8fb2-e5b428a15233",
+      "id": "06dc5ab5-fc7f-407d-92fb-cdaf2e56613a",
       "name": "Think"
     },
     {
@@ -73,14 +73,14 @@
       "type": "n8n-nodes-base.postgresTool",
       "typeVersion": 2.6,
       "position": [
-        3232,
-        192
+        480,
+        288
       ],
-      "id": "429f9c33-8818-4860-9d92-29273f5b8db1",
+      "id": "3e7db933-96d5-4069-ba69-351f085254ba",
       "name": "online sales data",
       "credentials": {
         "postgres": {
-          "id": "nv5tw9YV2ZNsjZFz",
+          "id": "REDACTED",
           "name": "Postgres account"
         }
       }
@@ -90,10 +90,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolCalculator",
       "typeVersion": 1,
       "position": [
-        3376,
-        192
+        624,
+        288
       ],
-      "id": "d5c820ea-d8c9-42c4-bb16-8740d9078ff0",
+      "id": "5025aa7a-c951-4650-9139-f762d0f73905",
       "name": "Calculator (SQL)"
     },
     {
@@ -105,11 +105,11 @@
       },
       "type": "n8n-nodes-base.stickyNote",
       "position": [
-        2752,
-        -96
+        0,
+        0
       ],
       "typeVersion": 1,
-      "id": "bfeea8f9-141c-482b-944a-0508b3d05f64",
+      "id": "8019553f-c12e-469f-b4d6-38d3687be732",
       "name": "Sticky Note2"
     }
   ],
@@ -173,6 +173,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "77a208ff5607874c68d16a0f8b17b1f761e899c7e2cd813540f415fb8d3257e9"
   }
 }
