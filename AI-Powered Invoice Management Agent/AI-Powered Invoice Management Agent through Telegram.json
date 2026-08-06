@@ -15,10 +15,10 @@
       ],
       "id": "61725325-315d-4ebd-ba9c-59734d26f832",
       "name": "Receive Invoice Image",
-      "webhookId": "685611ad-1a51-4efb-a4ae-f7795faaa889",
+      "webhookId": "REDACTED",
       "credentials": {
         "telegramApi": {
-          "id": "5uVAEfIoCSHpKOeP",
+          "id": "REDACTED",
           "name": "Telegram account"
         }
       }
@@ -37,10 +37,10 @@
       ],
       "id": "435c4594-4c0a-423a-8448-460c4d74db10",
       "name": "Download the Invoice",
-      "webhookId": "252ac54d-9548-4c2a-8eb0-8918b8fcb606",
+      "webhookId": "REDACTED",
       "credentials": {
         "telegramApi": {
-          "id": "5uVAEfIoCSHpKOeP",
+          "id": "REDACTED",
           "name": "Telegram account"
         }
       }
@@ -54,7 +54,7 @@
           "parameters": [
             {
               "name": "apikey",
-              "value": "K86110720388957"
+              "value": "REDACTED"
             }
           ]
         },
@@ -92,10 +92,10 @@
         },
         "folderId": {
           "__rl": true,
-          "value": "1oKcXBN_b3FTtd5yFj7KfqKfLKsdU0iQX",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Invoice Images",
-          "cachedResultUrl": "https://drive.google.com/drive/folders/1oKcXBN_b3FTtd5yFj7KfqKfLKsdU0iQX"
+          "cachedResultUrl": "https://drive.google.com/drive/folders/REDACTED"
         },
         "options": {}
       },
@@ -109,7 +109,7 @@
       "name": "Upload Invoice file image",
       "credentials": {
         "googleDriveOAuth2Api": {
-          "id": "koDBtFSs8Qm5AEX8",
+          "id": "REDACTED",
           "name": "Google Drive account"
         }
       }
@@ -159,7 +159,7 @@
       "name": "OpenAI GPT-4o mini (parser)",
       "credentials": {
         "openRouterApi": {
-          "id": "ijipWuWtRyNtoHqS",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -169,17 +169,17 @@
         "operation": "append",
         "documentId": {
           "__rl": true,
-          "value": "1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Invoice Database",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REDACTED/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": "gid=REDACTED",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REDACTED/edit#gid=REDACTED"
         },
         "columns": {
           "mappingMode": "defineBelow",
@@ -323,7 +323,7 @@
       "name": "Update AI Invoice Database",
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "IBpmypy7iZ349eZn",
+          "id": "REDACTED",
           "name": "Google Sheets account"
         }
       }
@@ -361,7 +361,7 @@
       "name": "OpenAI GPT-4o mini (Extract Agent)",
       "credentials": {
         "openRouterApi": {
-          "id": "ijipWuWtRyNtoHqS",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -398,7 +398,7 @@
       "name": "OpenAI GPT-4o mini (Summary Agent)",
       "credentials": {
         "openRouterApi": {
-          "id": "ijipWuWtRyNtoHqS",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -431,10 +431,10 @@
       ],
       "id": "59c13ff6-0ed9-49e5-bdcf-d492f96d43f7",
       "name": "Send Reply with Invoice Details",
-      "webhookId": "491afd11-86e4-4f62-a8da-7e7d13ffdf74",
+      "webhookId": "REDACTED",
       "credentials": {
         "telegramApi": {
-          "id": "5uVAEfIoCSHpKOeP",
+          "id": "REDACTED",
           "name": "Telegram account"
         }
       }
@@ -443,17 +443,17 @@
       "parameters": {
         "documentId": {
           "__rl": true,
-          "value": "1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "AI Invoice Database",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit?usp=drivesdk"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REDACTED/edit?usp=drivesdk"
         },
         "sheetName": {
           "__rl": true,
-          "value": "gid=0",
+          "value": "gid=REDACTED",
           "mode": "list",
           "cachedResultName": "Sheet1",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1pa7rcBGRsU_LxOOzJ8YzyNlov7EMkDMuhgPV0qPx8P0/edit#gid=0"
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/REDACTED/edit#gid=REDACTED"
         },
         "filtersUI": {
           "values": [
@@ -486,7 +486,7 @@
       "alwaysOutputData": true,
       "credentials": {
         "googleSheetsOAuth2Api": {
-          "id": "IBpmypy7iZ349eZn",
+          "id": "REDACTED",
           "name": "Google Sheets account"
         }
       }
@@ -538,10 +538,10 @@
       ],
       "id": "712f402b-fb63-4cc1-8688-532ae1fe54fd",
       "name": "Send Invoice already exists",
-      "webhookId": "5101733b-a0da-4ff6-a691-38d77dd555fb",
+      "webhookId": "REDACTED",
       "credentials": {
         "telegramApi": {
-          "id": "5uVAEfIoCSHpKOeP",
+          "id": "REDACTED",
           "name": "Telegram account"
         }
       }
