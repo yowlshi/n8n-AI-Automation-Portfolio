@@ -4,25 +4,25 @@
       "parameters": {
         "options": {}
       },
-      "id": "dabfeead-5a0a-45aa-a9a4-9748d4d50d11",
+      "id": "3acdd9dd-22af-4df9-8c72-2c3ff1e01889",
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.4,
       "position": [
-        2464,
-        -16
+        0,
+        0
       ],
-      "webhookId": "08ba4bc0-d6ac-4eda-a7a4-7133d4b2b9ba"
+      "webhookId": "REDACTED"
     },
     {
       "parameters": {
         "operation": "get",
         "dataTableId": {
           "__rl": true,
-          "value": "0YjikOevs1gKwosQ",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Online Sales Data",
-          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+          "cachedResultUrl": "/projects/yourn8nProject/datatables/yourdatatables"
         },
         "matchType": "allConditions",
         "filters": {
@@ -38,10 +38,10 @@
       "type": "n8n-nodes-base.dataTableTool",
       "typeVersion": 1.1,
       "position": [
-        2720,
-        208
+        256,
+        224
       ],
-      "id": "3cc8f3f2-8398-4be4-b6d6-7521596688cd",
+      "id": "8aa370e1-36ca-45fd-81d5-149b4148d76d",
       "name": "Product Name"
     },
     {
@@ -49,17 +49,17 @@
         "model": "openai/gpt-4o-mini",
         "options": {}
       },
-      "id": "0d50709f-d955-4170-a543-e38d8cca4c06",
+      "id": "ba6775b3-bf4b-452a-9ea9-23d690683835",
       "name": "OpenRouter Chat Model (Sales)",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        2416,
-        208
+        -48,
+        224
       ],
       "credentials": {
         "openRouterApi": {
-          "id": "G3hLUvTCWJRM9bq4",
+          "id": "REDACTED",
           "name": "OpenRouter account"
         }
       }
@@ -69,10 +69,10 @@
       "type": "@n8n/n8n-nodes-langchain.toolCalculator",
       "typeVersion": 1,
       "position": [
-        3120,
-        208
+        656,
+        224
       ],
-      "id": "5494d2a7-efc7-4458-a403-9be1b325afe3",
+      "id": "7274a9fe-b6c2-40cf-a6e3-7483e471d140",
       "name": "Calculator (Sales)"
     },
     {
@@ -80,10 +80,10 @@
         "operation": "get",
         "dataTableId": {
           "__rl": true,
-          "value": "0YjikOevs1gKwosQ",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Online Sales Data",
-          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+          "cachedResultUrl": "/projects/yourn8nProject/datatables/yourdatatables"
         },
         "matchType": "allConditions",
         "filters": {
@@ -99,10 +99,10 @@
       "type": "n8n-nodes-base.dataTableTool",
       "typeVersion": 1.1,
       "position": [
-        2832,
-        208
+        368,
+        224
       ],
-      "id": "8bc74727-79bd-43ab-9612-2b63b197ebc3",
+      "id": "aa41bb3c-4e1b-4b51-b59d-f66c006ec3d7",
       "name": "Date"
     },
     {
@@ -110,10 +110,10 @@
         "operation": "get",
         "dataTableId": {
           "__rl": true,
-          "value": "0YjikOevs1gKwosQ",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Online Sales Data",
-          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+          "cachedResultUrl": "/projects/yourn8nProject/datatables/yourdatatables"
         },
         "matchType": "allConditions",
         "filters": {
@@ -129,10 +129,10 @@
       "type": "n8n-nodes-base.dataTableTool",
       "typeVersion": 1.1,
       "position": [
-        2960,
-        208
+        496,
+        224
       ],
-      "id": "e4b39f99-c465-4f87-ac65-ed37cbacab5e",
+      "id": "f088adc7-e745-401b-a125-a0c4e83ee546",
       "name": "Transaction ID"
     },
     {
@@ -140,10 +140,10 @@
         "operation": "get",
         "dataTableId": {
           "__rl": true,
-          "value": "0YjikOevs1gKwosQ",
+          "value": "REDACTED",
           "mode": "list",
           "cachedResultName": "Online Sales Data",
-          "cachedResultUrl": "/projects/Jrrc3KTY9syZpKLg/datatables/0YjikOevs1gKwosQ"
+          "cachedResultUrl": "/projects/yourn8nProject/datatables/yourdatatables"
         },
         "matchType": "allConditions",
         "returnAll": true
@@ -151,23 +151,23 @@
       "type": "n8n-nodes-base.dataTableTool",
       "typeVersion": 1.1,
       "position": [
-        2608,
-        208
+        144,
+        224
       ],
-      "id": "02ed435f-5305-48ce-a6ee-2fc98ed6dae5",
+      "id": "a55c3433-0e88-4a63-8d91-6fba4587979f",
       "name": "All Rows"
     },
     {
       "parameters": {
         "options": {}
       },
-      "id": "0c9b5e2b-9230-4056-8f4c-53cd7a8292fa",
+      "id": "1802b03b-19b4-46e7-a760-1a2ebf29804a",
       "name": "Online Sales Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        2656,
-        -16
+        192,
+        0
       ]
     }
   ],
@@ -253,6 +253,6 @@
   "pinData": {},
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "49846a3c6535f7dc654971ee3e52fa6424a2a2edd4ea9be0b27cc323f545e291"
+    "instanceId": "77a208ff5607874c68d16a0f8b17b1f761e899c7e2cd813540f415fb8d3257e9"
   }
 }
